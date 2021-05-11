@@ -1,0 +1,59 @@
+button{
+  width: 5.6rem;
+  height: 5.6rem;
+  border: 0.24rem solid;
+  border-radius: 50%;
+  /* background-color: var(--black); */
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent; /* prevent blur when click in mobile screen */
+  /* border: none; */
+}
+
+.green{
+  border-color: var(--green);
+}
+
+.green:active, .green.active {
+  background-color: var(--green);
+  border-color: transparent;
+}
+
+.blue{
+  border-color: var(--blue);
+}
+
+.blue:active, .blue.active {
+  background-color: var(--blue);
+  border-color: transparent;
+}
+
+.red{
+  border-color: var(--red);
+}
+
+.red:active, .red.active {
+  background-color: var(--red);
+  border-color: transparent;
+}
+
+.yellow{
+  border-color: var(--yellow);
+}
+
+.yellow:active, .yellow.active {
+  background-color: var(--yellow);
+  border-color: transparent;
+}
+
+.white{
+  border-color: white;
+  color: white;
+  font-size: 1rem;
+}
+
+.white:active{
+  background-color: bisque;
+}

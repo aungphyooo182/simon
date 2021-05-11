@@ -1,0 +1,33 @@
+<div class="card">
+  <form (keyup.enter)="$event.preventDefault(); continueBtnClicked()">
+    <app-text class="create-text text-c100">Let’s create</app-text>
+    <app-text class="create-text text-c100">account to access your content.</app-text>
+    <app-text class="create-text-mobile text-c100">Create your log in username and password.</app-text>
+    <app-input [control]="form.get('username')" [hint]="'Pick your username'" [class]="'signup-full'" (blurEvent)="blurInput($event)" >
+    </app-input>
+    <ng-container *ngIf="(!form.get('username').errors || !clickBtn ) && !usernameError">
+      <app-text class="text-c100 desc-text">It is good to use your email for your username.</app-text>
+    </ng-container>
+    <ng-container *ngIf="form.get('username').errors && clickBtn && !usernameError">
+      <app-text [class]="'form-error-label'">Please enter username</app-text>
+    </ng-container>
+    <ng-container *ngIf="usernameError">
+      <app-text [class]="'form-error-label'">There is already an account with this username. If this is you <a (click)="login()" class="cursor">log in</a> now.</app-text>
+    </ng-container>
+    <div style="position: relative;">
+      <app-input [control]="form.get('password')" [type]="togglePassword" [hint]="'Set your password'" [class]="'signup-full'" (blurEvent)="blurInput($event)">
+      </app-input>
+      <app-image  class="cursor" [class]="'eye'" *ngIf="!clickedEyeOpen" [src]="eyeCloseUrl"  (click)="clickedEye()"></app-image>
+      <app-image  class="cursor" [class]="'eye'" *ngIf="clickedEyeOpen" [src]="eyeOpenUrl" (click)="clickedEye()"></app-image>
+    </div>
+    <ng-container *ngIf="!form.get('password').errors || !clickBtn">
+      <app-text class="text-c100 desc-text" >Password must be 8 characters or more</app-text>
+    </ng-container>
+    <ng-container *ngIf="form.get('password').errors && clickBtn">
+      <app-text [class]="'form-error-label'">Password must be 8 characters or more</app-text>
+    </ng-container>
+    <!-- <div class="continue-btn" (click)="continueBtnClicked()"> -->
+      <app-button [class]="!loading? 'red-primary-l' : 'btn-disable red-primary-l'" (btnClick)="continueBtnClicked()">Continue</app-button>
+    <!-- </div> -->
+  </form>
+</div>
