@@ -6,6 +6,7 @@ import {BusinessLogicFacade} from './business-logic/business-logic.facade';
 import {BusinessRequirementsInjectionToken} from './presentation/business-logic.requirements';
 import { HomePageModule } from './presentation/home-page/home-page.module';
 import { GameStateService } from '../lib/game-state.service';
+import { UserService } from './data/api-services/user.service';
 @NgModule({
     imports: [
         BusinessLogicFacade,
@@ -19,7 +20,8 @@ import { GameStateService } from '../lib/game-state.service';
             provide: BusinessRequirementsInjectionToken,
             useClass: BusinessLogicFacade
         },
-        GameStateService
+        GameStateService,
+        UserService
     ],
     exports: [
     ]

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiurl : "https://intense-wildwood-27786.herokuapp.com",
-  apiurl : "http://localhost:3000/",
+  apiurl : "http://localhost:3000",
   showDebug : true
 };
 

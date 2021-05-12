@@ -1,0 +1,8 @@
+.form-error-label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: #e63c39;
+}

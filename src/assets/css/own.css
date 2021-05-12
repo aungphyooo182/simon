@@ -1,23 +1,24 @@
-h2{
+h2 {
   text-align: center;
   text-transform: uppercase;
   font-family: sans-serif;
 }
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --black : #071013;
+  --black: #071013;
   --green: #29bf12;
   --blue: #08bdbd;
   --red: #f21b3f;
   --yellow: #ff9915;
 }
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
 }
 
-body{
+body {
   /* background-color: var(--black); */
   /* background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); */
   /* #a1c4fd → #c2e9fb */
@@ -27,16 +28,16 @@ body{
   /* overflow: hidden; */
 }
 
-h1{
+h1 {
   text-align: center;
 }
 
-.container{
+.container {
   width: 480px;
   margin: 0 auto;
 }
 
-.home-container{
+.home-container {
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -44,28 +45,29 @@ h1{
   justify-content: center;
 }
 
-.home-container>p,.home-container>label{
+.home-container > p,
+.home-container > label {
   padding-left: 24px;
 }
 
-.home-container>.continue-btn{
+.home-container > .continue-btn {
   margin-left: 20px;
 }
 
-.home-container>label{
+.home-container > label {
   font-size: 20px;
   line-height: 28px;
   color: black;
 }
 
-.blur-container{
+.blur-container {
   background-color: white;
   opacity: 0;
   height: 100%;
   position: absolute;
 }
 
-.error-container{
+.error-container {
   align-items: center;
   height: 100%;
   width: 100%;
@@ -74,33 +76,25 @@ h1{
   justify-content: center;
 }
 
-.card{
-  width: 300px;
-  background: grey;
-  padding: 10px;
-  border-radius: 16px;
-  text-align: center;
-}
-
-.flex{
+.flex {
   display: flex;
   margin: 2rem;
 }
 
-.center{
+.center {
   justify-content: center;
 }
 
-.middle{
+.middle {
   justify-content: space-around;
   align-items: baseline;
 }
 
-p{
+p {
   font-size: 2rem;
 }
 
-.continue-btn{
+.continue-btn {
   width: 120px;
   height: 48px;
   outline: none;
@@ -112,20 +106,20 @@ p{
   cursor: pointer;
 }
 
-.footer-btn{
+.footer-btn {
   display: flex;
   justify-content: space-around;
 }
 
-@media only screen and (max-width: 400px){
-  .container{
+@media only screen and (max-width: 400px) {
+  .container {
     width: 100%;
     text-align: center;
   }
-  .home-container>.continue-btn{
+  .home-container > .continue-btn {
     margin: 0 auto;
   }
-  .home-container>label{
+  .home-container > label {
     font-size: 20px;
     line-height: 28px;
     padding: 0px 10px;

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {CardStore} from './card.store'
 
@@ -15,8 +15,11 @@ export class CardComponent implements OnInit{
 
   constructor(private store: CardStore,private fb: FormBuilder) {}
 
-  public usernameClass = "signup-full";
-  public passwordClass = "signup-full";
+  @Output() outputRegister = new EventEmitter ();
+  @Output() outputLogin = new EventEmitter ();
+
+  public usernameClass = "signup-input";
+  public passwordClass = "signup-input";
   public usernameError = false;
   public togglePassword = "password";
   public eyeOpenUrl = "./assets/images/eye_open.svg";
@@ -27,6 +30,8 @@ export class CardComponent implements OnInit{
   public username;
   public password;
 
+  public showLoginForm = false;
+
   ngOnInit(){
     this.form.valueChanges.subscribe((value) => {
       this.clickBtn = false;
@@ -36,24 +41,19 @@ export class CardComponent implements OnInit{
     });
   }
 
-
-  clickedEye(){
-    this.clickedEyeOpen = !this.clickedEyeOpen
-    if(this.clickedEyeOpen){
-      this.togglePassword = 'text'
-    }else{
-      this.togglePassword = 'password'
-    }
-  }
-
   blurInput($event) {
     console.log("get blur event");
   }
 
-  login(){
-    // this.loginOutput.emit();
+  showLogin(){
+    this.showLoginForm = true;
   }
-  continueBtnClicked(){
+
+  showSignup(){
+    this.showLoginForm = false;
+  }
+
+  signup(){
     this.clickBtn = true;
     console.log('clicked')
     // this.existUserName = true;
@@ -67,11 +67,31 @@ export class CardComponent implements OnInit{
       // this.shared.setRegisterData(registerObject);
       // this.nextOutput.emit(registerObject);
       console.log('next');
+      this.outputRegister.emit(registerObject);
     }else{
-      this.usernameClass = "input-full-err";
-      this.passwordClass = "input-full-err";
+      console.log(this.form.errors)
+      this.usernameClass = "input-err";
+      this.passwordClass = "input-err";
     }
    }
 
+   login(){
+    this.clickBtn = true;
+    console.log('clicked')
+    // this.existUserName = true;
+    if (this.form.valid) {
+      this.username = this.form.get('username').value.trim();
+      this.password = this.form.get('password').value.trim();
+      var loginObject = {
+        'username' : this.username,
+        'password' : this.password
+      }
+      console.log('next');
+      this.outputLogin.emit(loginObject);
+    }else{
+      this.usernameClass = "input-err";
+      this.passwordClass = "input-err";
+    }
+   }
 
 }

@@ -1,4 +1,4 @@
-<div class="home-container">
+<!-- <div class="home-container">
   <h1>Simon Game</h1>
   <p>Disclaimer</p>
   <label style="color: red;">This game is in early development! You may encounter bugs. Please feel free to report</label>
@@ -11,5 +11,11 @@
   <label>In next level, you have to memorize the new one into the current order.</label>
   <label>Good Luck GAMER!</label>
   <button class="continue-btn" routerLink="/simon-game">Continue</button>
+</div> -->
+
+<div class="card-container">
+  <app-card
+    (outputRegister)="register($event)"
+    (outputLogin)="login($event)"
+  ></app-card>
 </div>
-  <!-- <app-card></app-card> -->

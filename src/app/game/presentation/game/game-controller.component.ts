@@ -15,6 +15,8 @@ export class GameControllerComponent {
         private game: GameStateService,
     ) {}
 
+    public username = localStorage.getItem('username') ? localStorage.getItem('username') : null;
+
     count: number;
     ring: boolean;
     state: any;
