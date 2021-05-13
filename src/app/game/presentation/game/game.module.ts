@@ -5,8 +5,10 @@ import {SharedComponentsModule} from '../shared-components/shared-components.mod
 import {GameControllerComponent} from './game-controller.component';
 import {RouterModule} from '@angular/router';
 import { GameButtonComponent } from './components/game-button/game-button.component';
+import { LeaderBoardComponent } from './components/leader-board/leader-board.component';
 const components = [
-  GameButtonComponent
+  GameButtonComponent,
+  LeaderBoardComponent
 ]
 @NgModule({
     declarations: [

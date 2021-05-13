@@ -16,8 +16,10 @@ export class HomePageControllerComponent {
     ) {}
 
     register(data) {
+      var regData = data;
       this.business.register(data).subscribe(data=>{
         console.log(data);
+        this.login(regData);
       },error=>{
         console.log(error);
       })
