@@ -80,6 +80,7 @@ export class GameStateService {
   }
 
   restartSimon() : void { //checked
+    this.player = [];
     this.showWinnerText = false;
     this.showErrorText = false;
     this.count = START_COUNT;

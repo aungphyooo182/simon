@@ -1,25 +1,32 @@
-<div class="wrapper">
-  <div
-    class="container blur-container"
-    *ngIf="!finishedLoop && supportOrientation && !showWinnerText"
-  ></div>
+<app-popup *ngIf="finishedLoop && supportOrientation && showWinnerText"
+[popup]="winnerPopup" (btnPopupClicked)="clickedWinnerPopup($event)"></app-popup>
 
-  <div
-    class="container error-container"
-    *ngIf="finishedLoop && supportOrientation && showWinnerText"
-  >
-    <div class="card">
-      <p>You win this time!!!</p>
-      <div class="footer-btn">
-        <button class="continue-btn" (click)="updateGame()">Continue</button>
-        <button class="continue-btn" (click)="playerGuess('white')">
-          Reset
-        </button>
-      </div>
+<app-popup *ngIf="showErrorText"
+[popup]="wrongGuessPopup" (btnPopupClicked)="clickedwrongGuessPopup($event)"></app-popup>
+
+<div
+class="blur-container"
+*ngIf="!finishedLoop && supportOrientation && !showWinnerText"
+></div>
+
+<div class="header">
+  <div class="welcome-text">
+    <label class="player-clicked" *ngIf="username">Welcome {{ username }}</label>
+  </div>
+  <div class="profile-wrapper">
+    <div class="profile" (click)="showProfile()">
+      <app-text [class]="'profile'">{{ username.slice(0,3) }}</app-text>
+    </div>
+    <div class="profile-box" *ngIf="showProfileBox">
+      <app-text [class]="'profile'" (click)="logout()">Log out</app-text>
     </div>
   </div>
+</div>
 
-  <div class="container error-container" *ngIf="showErrorText">
+
+<div class="wrapper">
+
+  <!-- <div class="container error-container" *ngIf="showErrorText">
     <div class="card">
       <p>Your guess is wrong!!!</p>
       <div class="footer-btn">
@@ -29,7 +36,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="container error-container" *ngIf="!supportOrientation">
     <p>Please change screen to portrait mode!</p>
@@ -37,18 +44,13 @@
 
   <div class="container" *ngIf="supportOrientation">
     <div class="flex center">
-      <label class="player-clicked" *ngIf="username"
-        >Welcome {{ username }}</label
-      >
-    </div>
-    <div class="flex center">
       <label
         class="player-clicked"
         [ngClass]="{ show: finishedLoop, hide: !finishedLoop }"
         >You have to guess {{ simonArray.length }} times.</label
       >
     </div>
-    <div class="flex center">
+    <!-- <div class="flex center">
       <app-game-button
         color="red"
         (guess)="playerGuess($event)"
@@ -70,13 +72,20 @@
         color="yellow"
         (guess)="playerGuess($event)"
       ></app-game-button>
-    </div>
+    </div> -->
+    <app-simon-button (guess)="playerGuess($event)"></app-simon-button>
     <div *ngIf="showDebug">
       <span *ngFor="let data of simonArray">{{ data }}</span>
     </div>
   </div>
 </div>
 
-<div class="leaderboard-wrapper">
+
+
+<!-- <div class="leaderboard-wrapper">
   <app-leader-board></app-leader-board>
-</div>
+</div> -->
+
+<!-- <div class="button-wrapper">
+  
+</div> -->

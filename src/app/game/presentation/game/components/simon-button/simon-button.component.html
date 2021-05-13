@@ -1,0 +1,18 @@
+<div class="simon-button-wrapper">
+    <div class="top">
+        <div class="left">
+            <app-button [id]="'red'" [class]="'simon-btn simon-top-left simon-bg-red cursor'" (click)="btnClick('red')"></app-button>
+        </div>
+        <div class="right">
+            <app-button [id]="'blue'" [class]="'simon-btn simon-top-right simon-bg-blue  cursor'" (click)="btnClick('blue')"></app-button>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="left">
+            <app-button [id]="'green'" [class]="'simon-btn simon-bottom-left simon-bg-green  cursor'" (click)="btnClick('green')"></app-button>
+        </div>
+        <div class="right">
+            <app-button [id]="'yellow'" [class]="'simon-btn simon-bottom-right simon-bg-yellow cursor'" (click)="btnClick('yellow')"></app-button>
+        </div>
+    </div>
+</div>

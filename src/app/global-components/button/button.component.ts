@@ -9,6 +9,7 @@ import {ButtonStore} from './button.store'
 export class ButtonComponent {
     @Input() disabled = false;
     @Input() class;
+    @Input() id;
     @Input() loading=false;
     @Output() btnClick = new EventEmitter<any>();
 

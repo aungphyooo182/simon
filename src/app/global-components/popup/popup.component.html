@@ -1,0 +1,12 @@
+<div class="card-container">
+    <div class="card">
+        <ng-container *ngFor="let item of popup.text">
+            <app-text [class]="item.class">{{ item.value }}</app-text>
+        </ng-container>
+        <div class="footer-btn">
+            <ng-container *ngFor="let item of popup.btn">
+                <app-button [class]="item.class" (btnClick)="btnClick($event)">{{ item.text }}</app-button>
+            </ng-container>
+        </div>
+    </div>
+</div>

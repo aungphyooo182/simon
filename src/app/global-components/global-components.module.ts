@@ -5,12 +5,14 @@ import { ButtonComponent } from './button/button.component';
 import { TextComponent } from './text/text.component';
 import { ImageComponent } from './image/image.component';
 import { InputComponent } from './input/input.component';
+import { PopupComponent } from './popup/popup.component';
 
 const components = [
   ButtonComponent,
   TextComponent,
   ImageComponent,
-  InputComponent
+  InputComponent,
+  PopupComponent
 ]
 
 @NgModule({

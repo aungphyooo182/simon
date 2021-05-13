@@ -8,7 +8,7 @@ import {GameButtonStore} from './game-button.store'
 })
 export class GameButtonComponent {
     constructor(private store: GameButtonStore) {}
-    @Input() color: string;
+  @Input() color: string;
   @Output() guess: EventEmitter<string> = new EventEmitter<string> ();
   @Input() active: boolean = false;
 
