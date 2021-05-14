@@ -35,19 +35,6 @@ h1 {
 .container {
   width: 480px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-@media screen and (min-width:768px) {
-  .container{
-    width: 640px;
-  }
-}
-
-@media screen and (max-width:420px) {
-
 }
 
 .home-container {
@@ -73,7 +60,12 @@ h1 {
   color: black;
 }
 
-
+.blur-container {
+  background-color: white;
+  opacity: 0;
+  height: 100%;
+  position: absolute;
+}
 
 .error-container {
   align-items: center;
@@ -86,7 +78,7 @@ h1 {
 
 .flex {
   display: flex;
-  /* margin: 2rem; */
+  margin: 2rem;
 }
 
 .center {
@@ -102,9 +94,22 @@ p {
   font-size: 2rem;
 }
 
+.continue-btn {
+  width: 120px;
+  height: 48px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  margin-top: 8px;
+  cursor: pointer;
+}
 
-
-
+.footer-btn {
+  display: flex;
+  justify-content: space-around;
+}
 
 @media only screen and (max-width: 400px) {
   .container {
@@ -120,3 +125,18 @@ p {
     padding: 0px 10px;
   }
 }
+
+/* lock orientation */
+
+/* @media screen and (max-height: 600px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: --var(yellow);
+  }
+} */
