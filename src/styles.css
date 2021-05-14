@@ -1,11 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
-/* @import '../node_modules/nunito-fontface/css/nunito/nunito-fontface.css'; */
-@import '../node_modules/typeface-nunito/index.css';
+@import "../node_modules/typeface-nunito/index.css";
 * {
-  font-family: 'nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-feature-settings: 'tnum' on, 'lnum' on, 'ss01' on, 'zero' on, 'ss02' on,
-    'ss03' on, 'case' on;
+  font-family: "nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-feature-settings: "tnum" on, "lnum" on, "ss01" on, "zero" on, "ss02" on,
+    "ss03" on, "case" on;
 }
 .text-b25 {
   color: #d9ecff;
@@ -116,7 +114,7 @@
   background-color: #805500;
 }
 .bg-y500 {
-  background-color: #FFD918;
+  background-color: #ffd918;
 }
 .text-r25 {
   color: #ffe7e6;
@@ -239,100 +237,100 @@
   background-color: #b1b1b3;
 }
 .text-main100 {
-  color: #FFEF9F;
+  color: #ffef9f;
 }
 .bg-main100 {
-  background-color: #FFEF9F;
+  background-color: #ffef9f;
 }
 .text-main500 {
-  color: #FFD918;
+  color: #ffd918;
 }
 .bg-main500 {
-  background-color: #FFD918;
+  background-color: #ffd918;
 }
 .text-main700 {
-  color: #EB9E00;
+  color: #eb9e00;
 }
 .bg-main700 {
-  background-color: #EB9E00;
+  background-color: #eb9e00;
 }
 .text-secondary100 {
-  color: #CCF5FF;
+  color: #ccf5ff;
 }
 .bg-secondary100 {
-  background-color: #CCF5FF;
+  background-color: #ccf5ff;
 }
 .text-secondary500 {
-  color: #79E1FA;
+  color: #79e1fa;
 }
 .bg-secondary500 {
-  background-color: #79E1FA;
+  background-color: #79e1fa;
 }
 .text-secondary700 {
-  color: #3394AB;
+  color: #3394ab;
 }
 .bg-secondary700 {
-  background-color: #3394AB;
+  background-color: #3394ab;
 }
 .text-accent100 {
-  color: #FFCBEA;
+  color: #ffcbea;
 }
 .bg-accent100 {
-  background-color: #FFCBEA;
+  background-color: #ffcbea;
 }
 .text-accent500 {
-  color: #FF14A1;
+  color: #ff14a1;
 }
 .bg-accent500 {
-  background-color: #FF14A1;
+  background-color: #ff14a1;
 }
 .text-accent700 {
-  color: #A40E68;
+  color: #a40e68;
 }
 .bg-accent700 {
-  background-color: #A40E68;
+  background-color: #a40e68;
 }
 .text-grey100 {
-  color: #F3F3F3;
+  color: #f3f3f3;
 }
 .bg-grey100 {
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
 }
 .text-old03 {
-  color: #007D49;
+  color: #007d49;
 }
 .bg-old03 {
-  background-color: #007D49;
+  background-color: #007d49;
 }
 .text-bg01 {
-  color: #FBF7EC;
+  color: #fbf7ec;
 }
 .bg-bg01 {
-  background-color: #FBF7EC;
+  background-color: #fbf7ec;
 }
 .text-bg02 {
-  color: #E6DFCC;
+  color: #e6dfcc;
 }
 .bg-bg02 {
-  background-color: #E6DFCC;
+  background-color: #e6dfcc;
 }
 .text-bg03 {
-  color: #CCC1A5;
+  color: #ccc1a5;
 }
 .bg-bg03 {
-  background-color: #CCC1A5;
+  background-color: #ccc1a5;
 }
 .text-bg04 {
-  color: #7D6F4B;
+  color: #7d6f4b;
 }
 .bg-bg04 {
-  background-color: #7D6F4B;
+  background-color: #7d6f4b;
 }
 .text-bg05 {
-  color: #675B3D;
+  color: #675b3d;
 }
 .bg-bg05 {
-  background-color: #675B3D;
+  background-color: #675b3d;
 }
 .text-bg33 {
   color: #333333;
@@ -440,7 +438,7 @@
   box-shadow: 2px 4px 32px rgba(0, 0, 0, 0.08);
 }
 
-.cursor{
+.cursor {
   cursor: pointer;
 }
 

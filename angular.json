@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/simon/",
             "outputPath": "dist/simon",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -121,6 +122,10 @@
               "devServerTarget": "simon:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

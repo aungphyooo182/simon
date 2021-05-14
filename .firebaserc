@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "simon-b0c45": {
+      "hosting": {
+        "simon": [
+          "simon-b0c45"
+        ]
+      }
+    }
+  }
+}
