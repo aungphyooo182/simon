@@ -31,6 +31,7 @@ export class HomePageControllerComponent {
       },
       (error) => {
         console.log(error);
+        this.btnLoading = false;
       }
     );
   }
@@ -46,7 +47,7 @@ export class HomePageControllerComponent {
       },
       (error) => {
         console.log(error);
-
+        this.btnLoading = false;
         // window.location.replace("http://localhost:4200/simon-game");
       }
     );
