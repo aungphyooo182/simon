@@ -15,6 +15,7 @@
 
 <div class="card-container">
   <app-card
+    [btnLoading]="btnLoading"
     (outputRegister)="register($event)"
     (outputLogin)="login($event)"
   ></app-card>

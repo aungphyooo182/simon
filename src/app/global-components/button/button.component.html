@@ -1,3 +1,8 @@
-<button [id]="id" [class]="loading ? 'btn-disable' : class"  (click)="onButtonClick($event)">
-    <ng-content></ng-content>
+<button
+  [id]="id"
+  [class]="class"
+  [ngClass]="{ 'btn-disable': loading }"
+  (click)="onButtonClick($event)"
+>
+  <ng-content></ng-content>
 </button>

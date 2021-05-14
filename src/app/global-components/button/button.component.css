@@ -4,6 +4,11 @@ button {
   -webkit-tap-highlight-color: transparent; /* prevent blur when click in mobile screen */
 }
 
+.btn-disable {
+  cursor: not-allowed !important;
+  background: #d9d9d9 !important;
+}
+
 .my-works {
   width: 200px;
   height: 200px;
@@ -59,47 +64,48 @@ button {
   box-shadow: 0px 4px 0px #cebe19;
 }
 
-.simon-bg-red{
+.simon-bg-red {
   background: #e63c39;
 }
-.simon-bg-yellow{
-  background: #ffbf00
+.simon-bg-yellow {
+  background: #ffbf00;
 }
-.simon-bg-green{
+.simon-bg-green {
   background: #00a653;
 }
-.simon-bg-blue{
+.simon-bg-blue {
   background: #0065f2;
 }
 
-.simon-bg-red:active, .simon-bg-red.active{
+.simon-bg-red:active,
+.simon-bg-red.active {
   background: #8c1e1c;
 }
-.simon-bg-yellow:active, .simon-bg-yellow.active{
+.simon-bg-yellow:active,
+.simon-bg-yellow.active {
   background: #805500;
 }
-.simon-bg-green:active, .simon-bg-green.active{
+.simon-bg-green:active,
+.simon-bg-green.active {
   background: #00593c;
 }
-.simon-bg-blue:active, .simon-bg-blue.active{
-  background: #0043a1;;
+.simon-bg-blue:active,
+.simon-bg-blue.active {
+  background: #0043a1;
 }
 
-
-
-.simon-top-left{
+.simon-top-left {
   border-top-left-radius: 100%;
 }
-.simon-top-right{
+.simon-top-right {
   border-top-right-radius: 100%;
 }
-.simon-bottom-left{
+.simon-bottom-left {
   border-bottom-left-radius: 100%;
 }
-.simon-bottom-right{
+.simon-bottom-right {
   border-bottom-right-radius: 100%;
 }
-
 
 .continue-btn {
   width: 120px;
@@ -113,50 +119,61 @@ button {
   cursor: pointer;
 }
 
-
-@media screen and (max-width:420px) {
-  .simon-bg-red,
-  .simon-bg-yellow,
- .simon-bg-green,
- .simon-bg-blue,
-   .simon-btn
-   {
-     width:90px;
-     height: 90px;
-   }
- 
-   .simon-bg-red:active, .simon-bg-red.active, 
-   .simon-bg-yellow:active, .simon-bg-yellow.active, 
-   .simon-bg-green:active, .simon-bg-green.active, 
-   .simon-bg-blue:active, .simon-bg-blue.active
-   {
-     width:95px;
-     height: 95px;
-   }
- 
-
+.menu-btn {
+  width: 130px;
+  height: 48px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #92e5e6;
+  box-shadow: 0px 4px 0px #5dbcbd;
 }
 
+@media screen and (max-width: 420px) {
+  .simon-bg-red,
+  .simon-bg-yellow,
+  .simon-bg-green,
+  .simon-bg-blue,
+  .simon-btn {
+    width: 90px;
+    height: 90px;
+  }
 
+  .simon-bg-red:active,
+  .simon-bg-red.active,
+  .simon-bg-yellow:active,
+  .simon-bg-yellow.active,
+  .simon-bg-green:active,
+  .simon-bg-green.active,
+  .simon-bg-blue:active,
+  .simon-bg-blue.active {
+    width: 95px;
+    height: 95px;
+  }
+}
 
-@media screen and (min-width:420px) {
-.simon-bg-red,
- .simon-bg-yellow,
-.simon-bg-green,
-.simon-bg-blue,
-  .simon-btn
-  {
-    width:310px;
+@media screen and (min-width: 420px) {
+  .simon-bg-red,
+  .simon-bg-yellow,
+  .simon-bg-green,
+  .simon-bg-blue,
+  .simon-btn {
+    width: 310px;
     height: 310px;
   }
 
-  .simon-bg-red:active, .simon-bg-red.active, 
-  .simon-bg-yellow:active, .simon-bg-yellow.active, 
-  .simon-bg-green:active, .simon-bg-green.active, 
-  .simon-bg-blue:active, .simon-bg-blue.active
-  {
-    width:320px;
+  .simon-bg-red:active,
+  .simon-bg-red.active,
+  .simon-bg-yellow:active,
+  .simon-bg-yellow.active,
+  .simon-bg-green:active,
+  .simon-bg-green.active,
+  .simon-bg-blue:active,
+  .simon-bg-blue.active {
+    width: 320px;
     height: 320px;
   }
-
 }

@@ -1,4 +1,4 @@
-import { Inject, Component, HostListener, OnInit } from '@angular/core';
+import { Inject, Component, HostListener, OnInit, Host } from '@angular/core';
 import {
   BusinessLogicRequirements,
   BusinessRequirementsInjectionToken,
@@ -7,6 +7,7 @@ import { GameStore } from './game.store';
 import { environment } from 'src/environments/environment';
 import { GameStateService } from 'src/app/lib/game-state.service';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-game',
   templateUrl: './game-controller.component.html',
@@ -95,7 +96,7 @@ export class GameControllerComponent {
       },
       {
         value:
-          'Simon will duplicate these first two signals and add one. Repeat these two signals by pressing the same color lenses, in order.',
+          'Simon will duplicate these first two signals and add one. Repeat these three signals by pressing the same color buttons, in order.',
         class: 'how-text',
       },
       {
@@ -127,6 +128,20 @@ export class GameControllerComponent {
   public startGame = false;
   public showHowToPlay = false;
 
+  @HostListener('document:click', ['$event']) documentClick(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log($(event.target).parents());
+
+    var inside1 = $(event.target).parents('.mobile-header').length == 1;
+    var inside2 = $(event.target).parents('.mobile-profile-bar').length == 1;
+    // $(event.target).parents('#badge-item').length ==1;
+    console.log(!inside1 && !inside2);
+    // if (!inside1 && !inside2) {
+    //   this.showProfileBox = false;
+    // }
+  }
+
   @HostListener('window:resize') updateOrientatioState() {
     console.log('ori');
     if (window.innerHeight > window.innerWidth) {
@@ -148,20 +163,7 @@ export class GameControllerComponent {
     }
   }
 
-  ngOnInit(): void {
-    // this.game.state.subscribe(state=>{
-    //   console.log(state);
-    //   this.state = state;
-    //   this.count = state.count; //for show
-    //   this.simonArray = state.simon;
-    //   this.level = this.simonArray.length;
-    //   this.winnerPopup.text[1].value = "Your can memorize "+ this.level+" items.";
-    //   this.finishedLoop = state.finishedLoop;
-    //   this.showWinnerText = state.showWinnerText;
-    //   this.showErrorText = state.showErrorText;
-    // });
-    // this.updateOrientatioState();
-  }
+  ngOnInit(): void {}
 
   startGameClicked() {
     console.log('start game');
@@ -200,7 +202,7 @@ export class GameControllerComponent {
   }
 
   showProfile() {
-    this.showProfileBox = true;
+    this.showProfileBox = !this.showProfileBox;
   }
 
   logout() {

@@ -1,0 +1,67 @@
+<div class="header">
+  <div class="welcome-text">
+    <app-text [class]="'player-clicked'" *ngIf="username"
+      >Welcome {{ username }}</app-text
+    >
+    <app-text [class]="'howtoplay'" (click)="howToPlay()"
+      >How to play?</app-text
+    >
+  </div>
+  <div class="profile-wrapper">
+    <div class="profile" (click)="showProfile()">
+      <app-text [class]="'profile'">{{ username.slice(0, 3) }}</app-text>
+    </div>
+    <div class="profile-box" *ngIf="showProfileBox">
+      <app-text [class]="'profile'" (click)="logout()">Log out</app-text>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="mobile-header">
+  <div class="mobile-profile-bar" (click)="showProfile()">
+    <app-text [class]="'setting-header'" *ngIf="username">Settings</app-text>
+  </div>
+  <div class="mobile-profile-box" *ngIf="showProfileBox">
+    <app-text [class]="'setting-header'" *ngIf="username"
+      >Welcome {{ username }}</app-text
+    >
+    <app-text [class]="'setting-text'" (click)="save()">Save score</app-text>
+    <app-text [class]="'setting-text'" (click)="leaderboard()"
+      >Leaderboard</app-text
+    >
+    <app-text [class]="'setting-text'" (click)="logout()">Log out</app-text>
+  </div>
+</div> -->
+
+<div class="mobile-header">
+  <div class="icon">
+    <app-text [class]="'setting-header'">Simon</app-text>
+  </div>
+  <div class="menu" (click)="showProfile()">
+    <app-image
+      [class]="'hamburger'"
+      [src]="'./assets/images/hamburger_menu.svg'"
+      *ngIf="!showProfileBox"
+    ></app-image>
+    <app-image
+      [class]="'hamburger'"
+      [src]="'./assets/images/cancel_m.svg'"
+      *ngIf="showProfileBox"
+    ></app-image>
+  </div>
+</div>
+<div class="mobile-profile-box" *ngIf="showProfileBox">
+  <div class="profile-wrapper">
+    <div class="profile-icon"></div>
+    <app-text [class]="'profile'">{{ username }}</app-text>
+  </div>
+  <div class="line"></div>
+  <div class="menu-btn">
+    <app-button [class]="'menu-btn'">Save Game</app-button>
+    <app-button [class]="'menu-btn'">Leaderboard</app-button>
+  </div>
+  <div class="line"></div>
+  <app-text [class]="'setting-text text-r100'" (click)="logout()"
+    >Log out</app-text
+  >
+</div>

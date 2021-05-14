@@ -21,22 +21,14 @@
   *ngIf="!finishedLoop && supportOrientation && !showWinnerText && startGame"
 ></div>
 
-<div class="header">
-  <div class="welcome-text">
-    <app-text [class]="'player-clicked'" *ngIf="username"
-      >Welcome {{ username }}</app-text
-    >
-    <app-text [class]="'howtoplay'" (click)="howToPlay()">How to play</app-text>
-  </div>
-  <div class="profile-wrapper">
-    <div class="profile" (click)="showProfile()">
-      <app-text [class]="'profile'">{{ username.slice(0, 3) }}</app-text>
-    </div>
-    <div class="profile-box" *ngIf="showProfileBox">
-      <app-text [class]="'profile'" (click)="logout()">Log out</app-text>
-    </div>
-  </div>
-</div>
+<app-header
+  [username]="username"
+  [showProfileBox]="showProfileBox"
+  (outputLeaderboard)="logout()"
+  (outputSave)="logout()"
+  (outputHowToPlay)="howToPlay()"
+  (outputProfileBox)="showProfile()"
+></app-header>
 
 <div class="wrapper">
   <div class="container error-container" *ngIf="!supportOrientation">
@@ -58,7 +50,7 @@
       >
       <app-button
         *ngIf="!startGame"
-        [class]="'continue-btn'"
+        [class]="'menu-btn'"
         (click)="startGameClicked()"
         >Start Game</app-button
       >
@@ -69,11 +61,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="leaderboard-wrapper">
-  <app-leader-board></app-leader-board>
-</div> -->
-
-<!-- <div class="button-wrapper">
-  
-</div> -->

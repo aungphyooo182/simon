@@ -57,8 +57,14 @@
       </app-text>
     </div>
   </form>
-  <app-button [class]="'signup-btn cursor'" (click)="signup()">
-    <app-text [class]="'h2-strong text-c300'">Sign up</app-text>
+  <app-button
+    [class]="'signup-btn cursor'"
+    (click)="signup()"
+    [loading]="btnLoading"
+  >
+    <app-text [class]="'h2-strong text-c300'" [loading]="btnLoading"
+      >Sign up</app-text
+    >
   </app-button>
 </div>
 
@@ -66,7 +72,7 @@
   <form (keyup.enter)="$event.preventDefault(); login()">
     <div class="header">
       <app-text [class]="'h2-strong text-c300'">
-        Log in to your accout
+        Log in to your account
       </app-text>
       <app-text [class]="'light-body-l text-c100'">or</app-text>
       <app-text [class]="'h3-strong text-g100 cursor'" (click)="showSignup()"
@@ -122,7 +128,13 @@
     </div>
   </form>
 
-  <app-button [class]="'signup-btn cursor'" (click)="login()">
-    <app-text [class]="'h2-strong text-c300'">Log in</app-text>
+  <app-button
+    [class]="'signup-btn cursor'"
+    [loading]="btnLoading"
+    (click)="login()"
+  >
+    <app-text [class]="'h2-strong text-c300'" [loading]="btnLoading"
+      >Log in</app-text
+    >
   </app-button>
 </div>

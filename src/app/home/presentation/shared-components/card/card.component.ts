@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CardStore } from './card.store';
 
@@ -17,6 +17,8 @@ export class CardComponent implements OnInit {
   });
 
   constructor(private store: CardStore, private fb: FormBuilder) {}
+
+  @Input() btnLoading = false;
 
   @Output() outputRegister = new EventEmitter();
   @Output() outputLogin = new EventEmitter();
