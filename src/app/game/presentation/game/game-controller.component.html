@@ -1,21 +1,29 @@
-<app-popup *ngIf="finishedLoop && supportOrientation && showWinnerText"
-[popup]="winnerPopup" (btnPopupClicked)="clickedWinnerPopup($event)"></app-popup>
+<app-popup
+  *ngIf="finishedLoop && supportOrientation && showWinnerText"
+  [popup]="winnerPopup"
+  (btnPopupClicked)="clickedWinnerPopup($event)"
+></app-popup>
 
-<app-popup *ngIf="showErrorText"
-[popup]="wrongGuessPopup" (btnPopupClicked)="clickedwrongGuessPopup($event)"></app-popup>
+<app-popup
+  *ngIf="showErrorText"
+  [popup]="wrongGuessPopup"
+  (btnPopupClicked)="clickedwrongGuessPopup($event)"
+></app-popup>
 
 <div
-class="blur-container"
-*ngIf="!finishedLoop && supportOrientation && !showWinnerText"
+  class="blur-container"
+  *ngIf="!finishedLoop && supportOrientation && !showWinnerText && startGame"
 ></div>
 
 <div class="header">
   <div class="welcome-text">
-    <label class="player-clicked" *ngIf="username">Welcome {{ username }}</label>
+    <app-text [class]="'player-clicked'" *ngIf="username"
+      >Welcome {{ username }}</app-text
+    >
   </div>
   <div class="profile-wrapper">
     <div class="profile" (click)="showProfile()">
-      <app-text [class]="'profile'">{{ username.slice(0,3) }}</app-text>
+      <app-text [class]="'profile'">{{ username.slice(0, 3) }}</app-text>
     </div>
     <div class="profile-box" *ngIf="showProfileBox">
       <app-text [class]="'profile'" (click)="logout()">Log out</app-text>
@@ -23,64 +31,37 @@ class="blur-container"
   </div>
 </div>
 
-
 <div class="wrapper">
-
-  <!-- <div class="container error-container" *ngIf="showErrorText">
-    <div class="card">
-      <p>Your guess is wrong!!!</p>
-      <div class="footer-btn">
-        <button class="continue-btn" (click)="tryAgain()">Try again</button>
-        <button class="continue-btn" (click)="playerGuess('white')">
-          Reset
-        </button>
-      </div>
-    </div>
-  </div> -->
-
   <div class="container error-container" *ngIf="!supportOrientation">
-    <p>Please change screen to portrait mode!</p>
+    <app-text [class]="'body-text'"
+      >Please change screen to portrait mode</app-text
+    >
   </div>
 
   <div class="container" *ngIf="supportOrientation">
-    <div class="flex center">
-      <label
-        class="player-clicked"
-        [ngClass]="{ show: finishedLoop, hide: !finishedLoop }"
-        >You have to guess {{ simonArray.length }} times.</label
+    <div class="flex center" style="height: 64px">
+      <app-text
+        *ngIf="startGame"
+        [class]="'player-clicked'"
+        [ngClass]="{
+          show: startGame && finishedLoop,
+          hide: startGame && !finishedLoop
+        }"
+        >You have to guess {{ simonArray.length }} times.</app-text
+      >
+      <app-button
+        *ngIf="!startGame"
+        [class]="'continue-btn'"
+        (click)="startGameClicked()"
+        >Start Game</app-button
       >
     </div>
-    <!-- <div class="flex center">
-      <app-game-button
-        color="red"
-        (guess)="playerGuess($event)"
-      ></app-game-button>
-    </div>
-    <div class="flex middle">
-      <app-game-button
-        color="blue"
-        (guess)="playerGuess($event)"
-      ></app-game-button>
-      <p *ngIf="showDebug">{{ count }}</p>
-      <app-game-button
-        color="green"
-        (guess)="playerGuess($event)"
-      ></app-game-button>
-    </div>
-    <div class="flex center">
-      <app-game-button
-        color="yellow"
-        (guess)="playerGuess($event)"
-      ></app-game-button>
-    </div> -->
     <app-simon-button (guess)="playerGuess($event)"></app-simon-button>
     <div *ngIf="showDebug">
-      <span *ngFor="let data of simonArray">{{ data }}</span>
+      <app-text *ngFor="let data of simonArray">{{ data }}</app-text>
     </div>
   </div>
 </div>
-
-
 
 <!-- <div class="leaderboard-wrapper">
   <app-leader-board></app-leader-board>

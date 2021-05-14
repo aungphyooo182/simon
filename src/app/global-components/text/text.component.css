@@ -7,7 +7,7 @@
   color: #e63c39;
 }
 
-.profile{
+.profile {
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -16,11 +16,25 @@
   color: black;
 }
 
-.win-text{
+.win-text {
   color: black;
   font-size: 18px;
   line-height: 20px;
   font-weight: bold;
   display: flex;
   justify-content: center;
+}
+
+.player-clicked {
+  color: black;
+  font-size: 32px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.body-text {
+  font-size: 2rem;
+  color: black;
+  line-height: 24px;
+  font-weight: bold;
 }
