@@ -16,6 +16,38 @@
   color: black;
 }
 
+.howtoplay {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: green;
+  margin-top: 8px;
+}
+
+.howtoplay-header {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: green;
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.how-text {
+  color: black;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: normal;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
 .win-text {
   color: black;
   font-size: 18px;

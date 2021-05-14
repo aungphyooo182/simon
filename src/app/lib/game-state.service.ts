@@ -163,6 +163,7 @@ export class GameStateService {
 
   loop() {
     this.finishedLoop = false;
+    this.setState();
     if (this.loopIndex < this.simon.length) {
       console.log('loop');
       this.clearAll();

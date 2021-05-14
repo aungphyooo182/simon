@@ -78,7 +78,54 @@ export class GameControllerComponent {
       },
     ],
   };
+  public howToPlayPopup = {
+    text: [
+      {
+        value: 'How to play',
+        class: 'howtoplay-header',
+      },
+      {
+        value: '1-player Game',
+        class: 'how-text',
+      },
+      {
+        value:
+          'Press the START button. Simon will give the first two signals. Repeat the signals by pressing the same color buttons.',
+        class: 'how-text',
+      },
+      {
+        value:
+          'Simon will duplicate these first two signals and add one. Repeat these two signals by pressing the same color lenses, in order.',
+        class: 'how-text',
+      },
+      {
+        value:
+          'If you can play guess each time, Simon will give you two options : CONTINUE or RESET . ',
+        class: 'how-text',
+      },
+      {
+        value: 'CONTINUE : You can play next level.',
+        class: 'how-text',
+      },
+      {
+        value: 'RESET : You can play from beginner level.',
+        class: 'how-text',
+      },
+      {
+        value:
+          'If you fail to repeat a sequence exactly, Simon responds an error. This means you have lost, and the sequence of signals ends.',
+        class: 'how-text',
+      },
+    ],
+    btn: [
+      {
+        text: 'Ready to play',
+        class: 'continue-btn',
+      },
+    ],
+  };
   public startGame = false;
+  public showHowToPlay = false;
 
   @HostListener('window:resize') updateOrientatioState() {
     console.log('ori');
@@ -170,5 +217,13 @@ export class GameControllerComponent {
   clickedwrongGuessPopup(index) {
     if (index == 0) this.game.tryAgain();
     else this.playerGuess('white');
+  }
+
+  howToPlay() {
+    this.showHowToPlay = true;
+  }
+
+  clickedhowToPlayPopup(index) {
+    this.showHowToPlay = false;
   }
 }

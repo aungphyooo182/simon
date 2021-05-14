@@ -5,6 +5,12 @@
 ></app-popup>
 
 <app-popup
+  *ngIf="showHowToPlay"
+  [popup]="howToPlayPopup"
+  (btnPopupClicked)="clickedhowToPlayPopup($event)"
+></app-popup>
+
+<app-popup
   *ngIf="showErrorText"
   [popup]="wrongGuessPopup"
   (btnPopupClicked)="clickedwrongGuessPopup($event)"
@@ -20,6 +26,7 @@
     <app-text [class]="'player-clicked'" *ngIf="username"
       >Welcome {{ username }}</app-text
     >
+    <app-text [class]="'howtoplay'" (click)="howToPlay()">How to play</app-text>
   </div>
   <div class="profile-wrapper">
     <div class="profile" (click)="showProfile()">
