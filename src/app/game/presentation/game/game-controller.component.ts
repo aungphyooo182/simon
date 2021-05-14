@@ -33,6 +33,9 @@ export class GameControllerComponent {
   showDebug = environment.showDebug;
   previousSupportOrientation: boolean = false;
 
+  public userInfo;
+  public userId;
+
   public username = localStorage.getItem('username')
     ? localStorage.getItem('username')
     : null;
@@ -163,7 +166,11 @@ export class GameControllerComponent {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userInfo = localStorage.getItem('userInfo');
+    this.userId = JSON.parse(this.userInfo)['_id'];
+    this.getCurrentLevel();
+  }
 
   startGameClicked() {
     console.log('start game');
@@ -208,6 +215,40 @@ export class GameControllerComponent {
   logout() {
     localStorage.clear();
     this.router.navigate(['']);
+  }
+
+  getCurrentLevel() {
+    this.business.getCurrentLevel(this.userId).subscribe(
+      (data) => {
+        console.log(data);
+        this.game.setLevel(data.level);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  saveGame() {
+    console.log('I am saving');
+
+    console.log(this.userInfo, this.userId);
+    var body = {
+      level: this.level,
+    };
+    if (this.level > 2 && this.userId != 'undefined') {
+      this.showProfileBox = false;
+      this.business.saveGame(this.userId, body).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      console.log("You can't save this level");
+    }
   }
 
   clickedWinnerPopup(index) {

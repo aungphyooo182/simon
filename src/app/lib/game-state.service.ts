@@ -161,6 +161,11 @@ export class GameStateService {
 
   public loopIndex = 0;
 
+  setLevel(level) {
+    this.count = level;
+    this.setState();
+  }
+
   loop() {
     this.finishedLoop = false;
     this.setState();

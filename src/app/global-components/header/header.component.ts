@@ -22,9 +22,9 @@ export class HeaderComponent {
     localStorage.clear();
     this.router.navigate(['']);
   }
-  save() {
-    localStorage.clear();
-    this.router.navigate(['']);
+  saveGame() {
+    console.log('i emit');
+    this.outputSave.emit();
   }
   leaderboard() {
     localStorage.clear();

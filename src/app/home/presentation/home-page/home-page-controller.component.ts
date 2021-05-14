@@ -41,6 +41,7 @@ export class HomePageControllerComponent {
     this.business.login(data).subscribe(
       (data) => {
         console.log(data, 'hello');
+        localStorage.setItem('userInfo', JSON.stringify(data));
         localStorage.setItem('username', data.username);
         this.btnLoading = false;
         this.router.navigateByUrl('/simon-game');
