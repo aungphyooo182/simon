@@ -7,6 +7,7 @@ import { ImageComponent } from './image/image.component';
 import { InputComponent } from './input/input.component';
 import { PopupComponent } from './popup/popup.component';
 import { HeaderComponent } from './header/header.component';
+import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.component';
 
 const components = [
   ButtonComponent,
@@ -15,6 +16,7 @@ const components = [
   InputComponent,
   PopupComponent,
   HeaderComponent,
+  LeaderboardItemComponent,
 ];
 
 @NgModule({

@@ -1,0 +1,22 @@
+.item-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+.item1,
+.item2,
+.item3 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.item1 {
+  width: 50px;
+}
+.item2 {
+  width: 120px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.item3 {
+  width: 120px;
+}

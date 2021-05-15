@@ -161,9 +161,16 @@ export class GameStateService {
 
   public loopIndex = 0;
 
-  setLevel(level) {
+  changeState(level, showWinnerText, showErrorText) {
     console.log('set level ', level);
     this.count = level;
+    this.showErrorText = showErrorText;
+    this.showWinnerText = showWinnerText;
+    this.simon = [];
+    this.player = [];
+    for (let i = 0; i < this.count; i++) {
+      this.appendSimon(); //get random color and push into simon array
+    }
     this.setState();
   }
 

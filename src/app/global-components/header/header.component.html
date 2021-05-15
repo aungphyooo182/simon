@@ -57,8 +57,18 @@
   </div>
   <div class="line"></div>
   <div class="menu-btn">
-    <app-button [class]="'menu-btn'" (click)="saveGame()">Save Game</app-button>
-    <app-button [class]="'menu-btn'">Leaderboard</app-button>
+    <app-button
+      [class]="'menu-btn'"
+      (click)="saveGame()"
+      [loading]="saveLoading"
+      >Save Game</app-button
+    >
+    <app-button
+      [class]="'menu-btn'"
+      (click)="leaderboard()"
+      [loading]="leaderLoading"
+      >Leaderboard</app-button
+    >
   </div>
   <div class="line"></div>
   <app-text [class]="'setting-text text-r100'" (click)="logout()"

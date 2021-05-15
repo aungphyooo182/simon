@@ -10,4 +10,7 @@ export class BusinessLogicRequirementsFake
   getCurrentLevel(id): Observable<any> {
     return of(true);
   }
+  getLeaderboard(): Observable<any> {
+    return of(true);
+  }
 }

@@ -16,6 +16,13 @@
   (btnPopupClicked)="clickedwrongGuessPopup($event)"
 ></app-popup>
 
+<app-popup
+  *ngIf="showLeaderboard"
+  [popup]="leaderboardPopup"
+  [isTop]="true"
+  (btnPopupClicked)="clickedleaderboardPopup($event)"
+></app-popup>
+
 <div
   class="blur-container"
   *ngIf="!finishedLoop && supportOrientation && !showWinnerText && startGame"
@@ -24,7 +31,9 @@
 <app-header
   [username]="username"
   [showProfileBox]="showProfileBox"
-  (outputLeaderboard)="logout()"
+  [saveLoading]="saveLoading"
+  [leaderLoading]="leaderLoading"
+  (outputLeaderboard)="leaderboard()"
   (outputSave)="saveGame()"
   (outputHowToPlay)="howToPlay()"
   (outputProfileBox)="showProfile()"
@@ -46,7 +55,7 @@
           show: startGame && finishedLoop,
           hide: startGame && !finishedLoop
         }"
-        >You have to guess {{ simonArray.length }} times.</app-text
+        >You have to guess {{ level }} times.</app-text
       >
       <app-button
         *ngIf="!startGame"

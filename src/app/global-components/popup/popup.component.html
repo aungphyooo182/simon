@@ -1,12 +1,22 @@
-<div class="card-container">
-    <div class="card">
-        <ng-container *ngFor="let item of popup.text">
-            <app-text [class]="item.class">{{ item.value }}</app-text>
-        </ng-container>
-        <div class="footer-btn">
-            <ng-container *ngFor="let item of popup.btn">
-                <app-button [class]="item.class" (btnClick)="btnClick($event)">{{ item.text }}</app-button>
-            </ng-container>
-        </div>
+<div class="card-container" [ngClass]="{ 'top-class': isTop }">
+  <div class="card">
+    <div class="close" (click)="close()">
+      <app-image [src]="'./assets/images/cancel_m.svg'"></app-image>
     </div>
+    <ng-container *ngFor="let item of popup.text">
+      <ng-container *ngIf="!isTop">
+        <app-text [class]="item.class">{{ item.value }}</app-text>
+      </ng-container>
+      <ng-container *ngIf="isTop">
+        <app-leaderboard-item [item]="item"></app-leaderboard-item>
+      </ng-container>
+    </ng-container>
+    <div class="footer-btn">
+      <ng-container *ngFor="let item of popup.btn">
+        <app-button [class]="item.class" (btnClick)="btnClick($event)">{{
+          item.text
+        }}</app-button>
+      </ng-container>
+    </div>
+  </div>
 </div>

@@ -31,4 +31,14 @@ export class GameService {
       })
     );
   }
+  getLeaderboard() {
+    let url = this.baseUrl + '/api/user/leaderboard';
+    return this.http.get(url).pipe(
+      map((res: Response) => {
+        let result = res;
+        // console.log(res);
+        return result;
+      })
+    );
+  }
 }

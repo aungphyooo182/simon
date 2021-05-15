@@ -4,6 +4,7 @@ import { DataRequirementsInjectionToken } from './data.requirements';
 import { DataFacade } from '../data/data.facade';
 import { SaveGameUseCase } from './use-cases/save-game.use-case';
 import { GetCurrentLevelUseCase } from './use-cases/get-current-level.use-case';
+import { GetLeaderboardUseCase } from './use-cases/get-leaderboard.use-case';
 
 @NgModule({
   imports: [DataFacade],
@@ -18,7 +19,8 @@ import { GetCurrentLevelUseCase } from './use-cases/get-current-level.use-case';
 export class BusinessLogicFacade implements BusinessLogicRequirements {
   constructor(
     private saveGameUseCase: SaveGameUseCase,
-    private getCurrentLevelUseCase: GetCurrentLevelUseCase
+    private getCurrentLevelUseCase: GetCurrentLevelUseCase,
+    private getLeaderboardUseCase: GetLeaderboardUseCase
   ) {}
 
   saveGame(id, body) {
@@ -26,5 +28,8 @@ export class BusinessLogicFacade implements BusinessLogicRequirements {
   }
   getCurrentLevel(id) {
     return this.getCurrentLevelUseCase.run(id);
+  }
+  getLeaderboard() {
+    return this.getLeaderboardUseCase.run();
   }
 }

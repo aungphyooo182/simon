@@ -12,6 +12,8 @@ export class HeaderComponent {
 
   @Input() username = '';
   @Input() showProfileBox = false;
+  @Input() saveLoading = false;
+  @Input() leaderLoading = false;
 
   @Output() outputLeaderboard = new EventEmitter<any>();
   @Output() outputSave = new EventEmitter<any>();
@@ -27,8 +29,8 @@ export class HeaderComponent {
     this.outputSave.emit();
   }
   leaderboard() {
-    localStorage.clear();
-    this.router.navigate(['']);
+    console.log('leaderboard');
+    this.outputLeaderboard.emit();
   }
   howToPlay() {}
 

@@ -8,4 +8,7 @@ export class DataRequirementsFake implements DataRequirements {
   getCurrentLevel(id): Observable<any> {
     return of(true);
   }
+  getLeaderboard(): Observable<any> {
+    return of(true);
+  }
 }

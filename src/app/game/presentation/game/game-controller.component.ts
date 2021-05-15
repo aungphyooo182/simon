@@ -40,6 +40,7 @@ export class GameControllerComponent {
     ? localStorage.getItem('username')
     : null;
   public showProfileBox = false;
+  public showLeaderboard = false;
   public level = 1;
   public winnerPopup = {
     text: [
@@ -128,8 +129,14 @@ export class GameControllerComponent {
       },
     ],
   };
+  public leaderboardPopup = {
+    text: [],
+    btn: [],
+  };
   public startGame = false;
   public showHowToPlay = false;
+  public saveLoading = false;
+  public leaderLoading = false;
 
   @HostListener('document:click', ['$event']) documentClick(event) {
     event.stopPropagation();
@@ -170,7 +177,7 @@ export class GameControllerComponent {
     this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
     this.userId = this.userInfo['_id'];
     console.log(this.userInfo.level);
-    this.game.setLevel(this.userInfo['level']);
+    this.game.changeState(this.userInfo['level'], false, false);
   }
 
   startGameClicked() {
@@ -234,7 +241,7 @@ export class GameControllerComponent {
 
   saveGame() {
     console.log('I am saving');
-
+    this.saveLoading = true;
     console.log(this.userInfo, this.userId);
     var body = {
       level: this.level,
@@ -244,9 +251,11 @@ export class GameControllerComponent {
       this.business.saveGame(this.userId, body).subscribe(
         (data) => {
           console.log(data);
+          this.saveLoading = false;
         },
         (error) => {
           console.log(error);
+          this.saveLoading = false;
         }
       );
     } else {
@@ -257,7 +266,12 @@ export class GameControllerComponent {
   clickedWinnerPopup(index) {
     console.log(index);
     if (index == 0) this.game.updateGame();
-    else this.playerGuess('white');
+    else if (index == 1) this.playerGuess('white');
+    else {
+      this.game.changeState(this.level + 1, false, false);
+      this.startGame = false;
+      this.previousSupportOrientation = false;
+    }
   }
 
   clickedwrongGuessPopup(index) {
@@ -271,5 +285,45 @@ export class GameControllerComponent {
 
   clickedhowToPlayPopup(index) {
     this.showHowToPlay = false;
+  }
+
+  leaderboard() {
+    this.showProfileBox = false;
+    this.getLeaderboard();
+  }
+  getLeaderboard() {
+    this.leaderLoading = true;
+    this.business.getLeaderboard().subscribe(
+      (data) => {
+        console.log('data ', data);
+        this.showLeaderboard = true;
+        this.leaderLoading = false;
+        this.leaderboardPopup.text = [];
+        this.leaderboardPopup.text.push({
+          value1: 'No',
+          value2: 'Username',
+          value3: 'Level',
+          class: 'howto-text',
+        });
+        for (var i = 0; i < data.length; i++) {
+          this.leaderboardPopup.text.push({
+            value1: (i + 1).toString(),
+            value2: data[i].username,
+            value3: data[i].level ? data[i].level : 2,
+            class: 'howto-text',
+          });
+        }
+        console.log(this.leaderboardPopup);
+
+        this.showLeaderboard = true;
+      },
+      (err) => {
+        console.log(err);
+        this.leaderLoading = false;
+      }
+    );
+  }
+  clickedleaderboardPopup(index) {
+    this.showLeaderboard = false;
   }
 }

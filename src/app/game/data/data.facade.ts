@@ -15,4 +15,7 @@ export class DataFacade implements DataRequirements {
   getCurrentLevel(id) {
     return this.gameServiceApi.getCurrentLevel(id);
   }
+  getLeaderboard() {
+    return this.gameServiceApi.getLeaderboard();
+  }
 }
