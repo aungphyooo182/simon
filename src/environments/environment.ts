@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiurl: 'https://fathomless-hollows-57085.herokuapp.com/',
+  // apiurl: 'https://fathomless-hollows-57085.herokuapp.com',
   apiurl: 'http://localhost:3000',
   showDebug: true,
 };
