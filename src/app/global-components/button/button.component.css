@@ -176,4 +176,7 @@ button {
     width: 320px;
     height: 320px;
   }
+  .menu-btn {
+    margin-right: 20px;
+  }
 }

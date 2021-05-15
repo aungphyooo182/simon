@@ -16,6 +16,7 @@
   width: 120px;
   display: flex;
   flex-wrap: wrap;
+  margin-right: 12px;
 }
 .item3 {
   width: 120px;

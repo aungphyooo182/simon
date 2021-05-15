@@ -8,6 +8,7 @@ import { InputComponent } from './input/input.component';
 import { PopupComponent } from './popup/popup.component';
 import { HeaderComponent } from './header/header.component';
 import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.component';
+import { ToastComponent } from './toast/toast.component';
 
 const components = [
   ButtonComponent,
@@ -17,6 +18,7 @@ const components = [
   PopupComponent,
   HeaderComponent,
   LeaderboardItemComponent,
+  ToastComponent,
 ];
 
 @NgModule({

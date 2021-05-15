@@ -44,7 +44,8 @@
 }
 
 .mobile-header {
-  display: none;
+  /* display: none; */
+  display: flex;
   width: 100%;
   height: 56px;
   justify-content: space-between;
@@ -126,10 +127,13 @@
   .welcome-text {
     margin: 12px;
   }
-  .header {
-    display: none;
-  }
   .mobile-header {
     display: flex;
+  }
+}
+
+@media screen and (min-width: 420px) {
+  .menu-btn {
+    justify-content: flex-start;
   }
 }

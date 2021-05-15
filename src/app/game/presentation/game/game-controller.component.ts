@@ -156,14 +156,22 @@ export class GameControllerComponent {
     console.log('ori');
     if (window.innerHeight > window.innerWidth) {
       this.supportOrientation = true;
-      if (!this.previousSupportOrientation && this.supportOrientation) {
+      if (
+        !this.previousSupportOrientation &&
+        this.supportOrientation &&
+        this.startGame
+      ) {
         this.game.generateSimon();
       }
       this.previousSupportOrientation = this.supportOrientation;
     } else {
       if (window.innerHeight >= 600) {
         this.supportOrientation = true;
-        if (!this.previousSupportOrientation && this.supportOrientation) {
+        if (
+          !this.previousSupportOrientation &&
+          this.supportOrientation &&
+          this.startGame
+        ) {
           this.game.generateSimon();
         }
         this.previousSupportOrientation = this.supportOrientation;
@@ -293,10 +301,10 @@ export class GameControllerComponent {
   }
   getLeaderboard() {
     this.leaderLoading = true;
+    this.showLeaderboard = true;
     this.business.getLeaderboard().subscribe(
       (data) => {
         console.log('data ', data);
-        this.showLeaderboard = true;
         this.leaderLoading = false;
         this.leaderboardPopup.text = [];
         this.leaderboardPopup.text.push({

@@ -20,6 +20,14 @@ export class HomePageControllerComponent {
   ) {}
 
   public btnLoading = false;
+  public showToast = false;
+  public feedbackTitle = '';
+  public feedbackBody = '';
+  public feedbackBtn = {
+    status: false,
+    text: '',
+  };
+  public tickIcon = false;
 
   register(data) {
     this.btnLoading = true;
@@ -32,6 +40,17 @@ export class HomePageControllerComponent {
       (error) => {
         console.log(error);
         this.btnLoading = false;
+        this.showToast = true;
+        this.feedbackTitle = 'Register Error';
+        this.feedbackBody = error.error.message;
+        this.feedbackBtn = {
+          status: false,
+          text: '',
+        };
+        this.tickIcon = false;
+        setTimeout(() => {
+          this.showToast = false;
+        }, 2000);
       }
     );
   }
@@ -49,7 +68,17 @@ export class HomePageControllerComponent {
       (error) => {
         console.log(error);
         this.btnLoading = false;
-        // window.location.replace("http://localhost:4200/simon-game");
+        this.showToast = true;
+        this.feedbackTitle = 'Login Error';
+        this.feedbackBody = error.error.message;
+        this.feedbackBtn = {
+          status: false,
+          text: '',
+        };
+        this.tickIcon = false;
+        setTimeout(() => {
+          this.showToast = false;
+        }, 2000);
       }
     );
   }
