@@ -11,8 +11,8 @@ export class GameService {
   private baseUrl = environment.apiurl;
 
   saveGame(id, body) {
-    let url = this.baseUrl + '/api/simon/user/' + id;
-    return this.http.post(url, body).pipe(
+    let url = this.baseUrl + '/api/user/' + id;
+    return this.http.patch(url, body).pipe(
       map((res: Response) => {
         let result = res;
         // console.log(res);
@@ -22,7 +22,7 @@ export class GameService {
   }
 
   getCurrentLevel(id) {
-    let url = this.baseUrl + '/api/simon/level/' + id;
+    let url = this.baseUrl + '/api/score/' + id;
     return this.http.get(url).pipe(
       map((res: Response) => {
         let result = res;

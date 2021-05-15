@@ -68,6 +68,7 @@ export class CardComponent implements OnInit {
       var registerObject = {
         username: this.username,
         password: this.password,
+        level: 2,
       };
       // this.shared.setRegisterData(registerObject);
       // this.nextOutput.emit(registerObject);

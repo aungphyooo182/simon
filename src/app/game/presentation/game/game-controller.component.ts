@@ -167,9 +167,10 @@ export class GameControllerComponent {
   }
 
   ngOnInit(): void {
-    this.userInfo = localStorage.getItem('userInfo');
-    this.userId = JSON.parse(this.userInfo)['_id'];
-    this.getCurrentLevel();
+    this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    this.userId = this.userInfo['_id'];
+    console.log(this.userInfo.level);
+    this.game.setLevel(this.userInfo['level']);
   }
 
   startGameClicked() {
@@ -217,17 +218,19 @@ export class GameControllerComponent {
     this.router.navigate(['']);
   }
 
-  getCurrentLevel() {
-    this.business.getCurrentLevel(this.userId).subscribe(
-      (data) => {
-        console.log(data);
-        this.game.setLevel(data.level);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  // getCurrentLevel() {
+  //   this.business.getCurrentLevel(this.userId).subscribe(
+  //     (data) => {
+  //       console.log(data);
+  //       if (data.lenght > 0) this.game.setLevel(data.level);
+  //       else this.game.setLevel(2);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //       this.game.setLevel(2);
+  //     }
+  //   );
+  // }
 
   saveGame() {
     console.log('I am saving');

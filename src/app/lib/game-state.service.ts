@@ -162,6 +162,7 @@ export class GameStateService {
   public loopIndex = 0;
 
   setLevel(level) {
+    console.log('set level ', level);
     this.count = level;
     this.setState();
   }
