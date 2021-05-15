@@ -33,21 +33,21 @@
   [showProfileBox]="showProfileBox"
   [saveLoading]="saveLoading"
   [leaderLoading]="leaderLoading"
+  [sound]="sound"
   (outputLeaderboard)="leaderboard()"
   (outputSave)="saveGame()"
   (outputHowToPlay)="howToPlay()"
   (outputProfileBox)="showProfile()"
+  (outputSound)="soundChange($event)"
 ></app-header>
 
 <div class="wrapper">
   <div class="container error-container" *ngIf="!supportOrientation">
-    <app-text [class]="'body-text'"
-      >Please change screen to portrait mode</app-text
-    >
+    <app-text [class]="'body-text'">{{ unsupportText }}</app-text>
   </div>
 
   <div class="container" *ngIf="supportOrientation">
-    <div class="flex center" style="height: 64px">
+    <div class="flex center" style="height: 100px; flex-direction: column">
       <app-text
         *ngIf="startGame"
         [class]="'player-clicked'"
@@ -57,9 +57,12 @@
         }"
         >You have to guess {{ level }} times.</app-text
       >
+      <app-text [class]="'howtoplay'" (click)="howToPlay()"
+        >How to play?</app-text
+      >
       <app-button
         *ngIf="!startGame"
-        [class]="'menu-btn'"
+        [class]="'popup-btn1'"
         (click)="startGameClicked()"
         >Start Game</app-button
       >

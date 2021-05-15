@@ -19,6 +19,8 @@ export class GameStateService {
   public greenAudio = new Audio();
   public blueAudio = new Audio();
   public yellowAudio = new Audio();
+  public winAudio = new Audio();
+  public loseAudio = new Audio();
   public soundEffects = [
     this.redAudio,
     this.greenAudio,
@@ -31,19 +33,31 @@ export class GameStateService {
     this.debugMode = false; //testing
     this.count = START_COUNT;
 
-    this.redAudio.src = './assets/sounds/sfx-animal-dog.mp3';
-    this.greenAudio.src = './assets/sounds/sfx-animal-kitten.mp3';
-    this.blueAudio.src = './assets/sounds/sfx-animal-pig.mp3';
-    this.yellowAudio.src = './assets/sounds/sfx-animal-sheep.mp3';
+    this.redAudio.src = './assets/sounds/red.mp3';
+    this.greenAudio.src = './assets/sounds/green.mp3';
+    this.blueAudio.src = './assets/sounds/blue.mp3';
+    this.yellowAudio.src = './assets/sounds/yellow.mp3';
+    this.winAudio.src = './assets/sounds/win.wav';
+    this.loseAudio.src = './assets/sounds/lose.wav';
     this.redAudio.load();
     this.greenAudio.load();
     this.blueAudio.load();
     this.yellowAudio.load();
+    this.winAudio.load();
+    this.loseAudio.load();
 
     this.redAudio.volume = this.debugMode ? 0.1 : 1;
     this.greenAudio.volume = this.debugMode ? 0.1 : 1;
     this.blueAudio.volume = this.debugMode ? 0.1 : 1;
     this.yellowAudio.volume = this.debugMode ? 0.1 : 1;
+  }
+
+  playWinAudio() {
+    this.winAudio.play();
+  }
+
+  playLoseAudio() {
+    this.loseAudio.play();
   }
 
   private get randomColor(): string {

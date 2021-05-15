@@ -14,11 +14,13 @@ export class HeaderComponent {
   @Input() showProfileBox = false;
   @Input() saveLoading = false;
   @Input() leaderLoading = false;
+  @Input() sound = true;
 
   @Output() outputLeaderboard = new EventEmitter<any>();
   @Output() outputSave = new EventEmitter<any>();
   @Output() outputHowToPlay = new EventEmitter<any>();
   @Output() outputProfileBox = new EventEmitter<any>();
+  @Output() outputSound = new EventEmitter<any>();
 
   logout() {
     localStorage.clear();
@@ -36,5 +38,10 @@ export class HeaderComponent {
 
   showProfile() {
     this.outputProfileBox.emit();
+  }
+
+  soundClicked() {
+    console.log('sound off clicked');
+    this.outputSound.emit(!this.sound);
   }
 }

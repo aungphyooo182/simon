@@ -40,6 +40,8 @@
   font-feature-settings: "tnum" on, "lnum" on;
   color: green;
   margin-top: 8px;
+  display: flex;
+  justify-content: center;
 }
 
 .howtoplay-header {
@@ -85,4 +87,14 @@
   color: black;
   line-height: 24px;
   font-weight: bold;
+}
+
+.win-text-header {
+  color: black;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
 }

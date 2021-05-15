@@ -35,6 +35,7 @@ export class GameControllerComponent {
 
   public userInfo;
   public userId;
+  public sound;
 
   public username = localStorage.getItem('username')
     ? localStorage.getItem('username')
@@ -45,22 +46,22 @@ export class GameControllerComponent {
   public winnerPopup = {
     text: [
       {
-        value: 'You win this time!!!',
-        class: 'win-text',
+        value: 'Congratulations!!!',
+        class: 'win-text-header',
       },
       {
-        value: 'Your can memorize ' + this.level + ' items.',
-        class: 'win-text',
+        value: 'Level ' + this.level + ' completed.',
+        class: 'win-text-header',
       },
     ],
     btn: [
       {
         text: 'Continue',
-        class: 'continue-btn',
+        class: 'popup-btn1',
       },
       {
         text: 'Reset',
-        class: 'continue-btn',
+        class: 'popup-btn2',
       },
     ],
   };
@@ -69,17 +70,17 @@ export class GameControllerComponent {
     text: [
       {
         value: 'Your guess is wrong!!!',
-        class: 'win-text',
+        class: 'win-text-header',
       },
     ],
     btn: [
       {
         text: 'Try again',
-        class: 'continue-btn',
+        class: 'popup-btn1',
       },
       {
         text: 'Reset',
-        class: 'continue-btn',
+        class: 'popup-btn2',
       },
     ],
   };
@@ -137,6 +138,7 @@ export class GameControllerComponent {
   public showHowToPlay = false;
   public saveLoading = false;
   public leaderLoading = false;
+  public unsupportText = 'Please change screen to portrait mode';
 
   @HostListener('document:click', ['$event']) documentClick(event) {
     event.stopPropagation();
@@ -153,8 +155,8 @@ export class GameControllerComponent {
   }
 
   @HostListener('window:resize') updateOrientatioState() {
-    console.log('ori');
-    if (window.innerHeight > window.innerWidth) {
+    console.log('ori', window.innerWidth);
+    if (window.innerHeight > window.innerWidth && window.innerWidth <= 1024) {
       this.supportOrientation = true;
       if (
         !this.previousSupportOrientation &&
@@ -165,7 +167,7 @@ export class GameControllerComponent {
       }
       this.previousSupportOrientation = this.supportOrientation;
     } else {
-      if (window.innerHeight >= 600) {
+      if (window.innerHeight >= 600 && window.innerWidth <= 1024) {
         this.supportOrientation = true;
         if (
           !this.previousSupportOrientation &&
@@ -176,7 +178,10 @@ export class GameControllerComponent {
         }
         this.previousSupportOrientation = this.supportOrientation;
       } else {
+        this.unsupportText =
+          'This game supports only for mobile and tablet in portraid mode.';
         this.supportOrientation = false;
+        this.previousSupportOrientation = this.supportOrientation;
       }
     }
   }
@@ -184,6 +189,8 @@ export class GameControllerComponent {
   ngOnInit(): void {
     this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
     this.userId = this.userInfo['_id'];
+    this.sound = this.userInfo['sound'];
+    console.log(this.userInfo, this.sound);
     console.log(this.userInfo.level);
     this.game.changeState(this.userInfo['level'], false, false);
   }
@@ -197,11 +204,19 @@ export class GameControllerComponent {
       this.count = state.count; //for show
       this.simonArray = state.simon;
       this.level = this.simonArray.length;
-      this.winnerPopup.text[1].value =
-        'Your can memorize ' + this.level + ' items.';
-      this.finishedLoop = state.finishedLoop;
+      (this.winnerPopup.text[1].value = 'Level ' + this.level + ' completed.'),
+        (this.finishedLoop = state.finishedLoop);
       this.showWinnerText = state.showWinnerText;
       this.showErrorText = state.showErrorText;
+
+      if (this.showErrorText)
+        setTimeout(() => {
+          this.game.playLoseAudio();
+        }, 300);
+      if (this.showWinnerText)
+        setTimeout(() => {
+          this.game.playWinAudio();
+        }, 300);
     });
     this.updateOrientatioState();
   }
@@ -246,6 +261,23 @@ export class GameControllerComponent {
   //     }
   //   );
   // }
+
+  soundChange(val: boolean) {
+    console.log('I am sound on ', val);
+    console.log(this.userInfo, this.userId);
+    var body = {
+      sound: val,
+    };
+    this.business.saveGame(this.userId, body).subscribe(
+      (data) => {
+        console.log(data);
+        this.sound = val;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   saveGame() {
     console.log('I am saving');

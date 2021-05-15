@@ -1,35 +1,6 @@
-h2 {
-  text-align: center;
-  text-transform: uppercase;
-  font-family: sans-serif;
-}
-/* You can add global styles to this file, and also import other style files */
-:root {
-  --black: #071013;
-  --green: #29bf12;
-  --blue: #08bdbd;
-  --red: #f21b3f;
-  --yellow: #ff9915;
-}
-
-html,
 body {
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  /* background-color: var(--black); */
-  /* background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); */
-  /* #a1c4fd → #c2e9fb */
   background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 100%);
   color: white;
-  font-family: sans-serif;
-  /* overflow: hidden; */
-}
-
-h1 {
-  text-align: center;
 }
 
 .container {
@@ -40,16 +11,6 @@ h1 {
   flex-direction: column;
 }
 
-@media screen and (min-width:768px) {
-  .container{
-    width: 640px;
-  }
-}
-
-@media screen and (max-width:420px) {
-
-}
-
 .home-container {
   width: 100%;
   margin: 0 auto;
@@ -58,22 +19,9 @@ h1 {
   justify-content: center;
 }
 
-.home-container > p,
-.home-container > label {
-  padding-left: 24px;
-}
-
 .home-container > .continue-btn {
   margin-left: 20px;
 }
-
-.home-container > label {
-  font-size: 20px;
-  line-height: 28px;
-  color: black;
-}
-
-
 
 .error-container {
   align-items: center;
@@ -102,9 +50,11 @@ p {
   font-size: 2rem;
 }
 
-
-
-
+@media screen and (min-width: 768px) {
+  .container {
+    width: 640px;
+  }
+}
 
 @media only screen and (max-width: 400px) {
   .container {

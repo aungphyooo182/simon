@@ -1,38 +1,3 @@
-<!-- <div class="header">
-  <div class="welcome-text">
-    <app-text [class]="'player-clicked'" *ngIf="username"
-      >Welcome {{ username }}</app-text
-    >
-    <app-text [class]="'howtoplay'" (click)="howToPlay()"
-      >How to play?</app-text
-    >
-  </div>
-  <div class="profile-wrapper">
-    <div class="profile" (click)="showProfile()">
-      <app-text [class]="'profile'">{{ username.slice(0, 3) }}</app-text>
-    </div>
-    <div class="profile-box" *ngIf="showProfileBox">
-      <app-text [class]="'profile'" (click)="logout()">Log out</app-text>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="mobile-header">
-  <div class="mobile-profile-bar" (click)="showProfile()">
-    <app-text [class]="'setting-header'" *ngIf="username">Settings</app-text>
-  </div>
-  <div class="mobile-profile-box" *ngIf="showProfileBox">
-    <app-text [class]="'setting-header'" *ngIf="username"
-      >Welcome {{ username }}</app-text
-    >
-    <app-text [class]="'setting-text'" (click)="save()">Save score</app-text>
-    <app-text [class]="'setting-text'" (click)="leaderboard()"
-      >Leaderboard</app-text
-    >
-    <app-text [class]="'setting-text'" (click)="logout()">Log out</app-text>
-  </div>
-</div> -->
-
 <div class="mobile-header">
   <div class="icon">
     <app-text [class]="'setting-header'">Simon</app-text>
@@ -52,26 +17,37 @@
 </div>
 <div class="mobile-profile-box" *ngIf="showProfileBox">
   <div class="profile-wrapper">
-    <div class="profile-icon"></div>
-    <app-text [class]="'profile'">{{ username }}</app-text>
+    <!-- <div class="profile-icon"></div> -->
+    <div class="username">
+      <app-text [class]="'profile'">Welcome {{ username }}</app-text>
+    </div>
   </div>
   <div class="line"></div>
   <div class="menu-btn">
     <app-button
-      [class]="'menu-btn'"
+      [class]="'popup-btn1 header-btn-margin'"
       (click)="saveGame()"
       [loading]="saveLoading"
       >Save Game</app-button
     >
     <app-button
-      [class]="'menu-btn'"
+      [class]="'popup-btn2 header-btn-margin'"
       (click)="leaderboard()"
       [loading]="leaderLoading"
       >Leaderboard</app-button
     >
+    <app-button
+      [class]="'popup-btn3 header-btn-margin'"
+      (click)="soundClicked()"
+      [loading]="leaderLoading"
+      >{{ sound ? "Sound: On" : "Sound: Off" }}</app-button
+    >
+    <app-button
+      [class]="'popup-btn4  header-btn-margin'"
+      (click)="leaderboard()"
+      [loading]="leaderLoading"
+      (click)="logout()"
+      >Log out</app-button
+    >
   </div>
-  <div class="line"></div>
-  <app-text [class]="'setting-text text-r100'" (click)="logout()"
-    >Log out</app-text
-  >
 </div>
