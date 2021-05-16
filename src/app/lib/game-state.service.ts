@@ -4,37 +4,47 @@ import { environment } from 'src/environments/environment';
 import { START_COUNT, COLORS } from '../models/constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameStateService {
-  public simon : string[] = [];
-  public player : string[] = [];
+  public simon: string[] = [];
+  public player: string[] = [];
   public count: number;
-  public showWinnerText : boolean;
-  public showErrorText : boolean;
-  public state = new Subject<any> (); // subjecy is a pratial observable
+  public showWinnerText: boolean;
+  public showErrorText: boolean;
+  public state = new Subject<any>(); // subjecy is a pratial observable
 
   public finishedLoop = false;
   public redAudio = new Audio();
   public greenAudio = new Audio();
   public blueAudio = new Audio();
   public yellowAudio = new Audio();
+  public winAudio = new Audio();
+  public loseAudio = new Audio();
   public soundEffects = [
-    this.redAudio, this.greenAudio, this.blueAudio, this.yellowAudio
+    this.redAudio,
+    this.greenAudio,
+    this.blueAudio,
+    this.yellowAudio,
   ];
   public debugMode = environment.showDebug;
   // src/app/services/apo-game-state.service
   constructor() {
     this.debugMode = false; //testing
     this.count = START_COUNT;
-    this.redAudio.src = '../../assets/sounds/sfx-animal-dog.mp3';
-    this.greenAudio.src = '../../assets/sounds/sfx-animal-kitten.mp3';
-    this.blueAudio.src = '../../assets/sounds/sfx-animal-pig.mp3';
-    this.yellowAudio.src = '../../assets/sounds/sfx-animal-sheep.mp3';
+
+    this.redAudio.src = './assets/sounds/red.mp3';
+    this.greenAudio.src = './assets/sounds/green.mp3';
+    this.blueAudio.src = './assets/sounds/blue.mp3';
+    this.yellowAudio.src = './assets/sounds/yellow.mp3';
+    this.winAudio.src = './assets/sounds/win.wav';
+    this.loseAudio.src = './assets/sounds/lose.wav';
     this.redAudio.load();
     this.greenAudio.load();
     this.blueAudio.load();
     this.yellowAudio.load();
+    this.winAudio.load();
+    this.loseAudio.load();
 
     this.redAudio.volume = this.debugMode ? 0.1 : 1;
     this.greenAudio.volume = this.debugMode ? 0.1 : 1;
@@ -42,19 +52,28 @@ export class GameStateService {
     this.yellowAudio.volume = this.debugMode ? 0.1 : 1;
   }
 
-  private get randomColor() : string {
-    return COLORS[Math.floor(Math.random()*4)];
+  playWinAudio() {
+    if (this.sound) this.winAudio.play();
   }
 
-  appendSimon(increment:boolean = false) : void {
+  playLoseAudio() {
+    if (this.sound) this.loseAudio.play();
+  }
+
+  private get randomColor(): string {
+    return COLORS[Math.floor(Math.random() * 4)];
+  }
+
+  appendSimon(increment: boolean = false): void {
     this.simon.push(this.randomColor); //don't need () since get method
     if (increment) {
       this.count++;
       this.setState();
-    };
+    }
   }
 
-  generateSimon() : void { //first
+  generateSimon(): void {
+    //first
     console.log('generateSimon');
     this.loopIndex = 0;
     this.simon = [];
@@ -72,14 +91,16 @@ export class GameStateService {
       player: this.player,
       simon: this.simon,
       count: this.count,
+      sound: this.sound,
       finishedLoop: this.finishedLoop,
-      showWinnerText : this.showWinnerText,
-      showErrorText : this.showErrorText
+      showWinnerText: this.showWinnerText,
+      showErrorText: this.showErrorText,
     });
-    console.log('set state');
+    console.log('set state', this.state);
   }
 
-  restartSimon() : void { //checked
+  restartSimon(): void {
+    //checked
     this.player = [];
     this.showWinnerText = false;
     this.showErrorText = false;
@@ -87,9 +108,9 @@ export class GameStateService {
     this.generateSimon();
   }
 
-  playeSound(val: number){
+  playeSound(val: number) {
     console.log(val);
-    this.soundEffects[val].play();
+    if (this.sound) this.soundEffects[val].play();
     // this.soundEffects[val].pause;
     // this.soundEffects[val].currentTime = 0;
     setTimeout(() => {
@@ -102,47 +123,49 @@ export class GameStateService {
     this.player.push(val); //push val to player array
     this.playeSound(COLORS[val]);
     // this.compareSimon().then(this.isComplete()); //check if correct
-    this.compareSimon().subscribe(data=>{
+    this.compareSimon().subscribe((data) => {
       if (data) {
         console.log('check');
         this.checkComplete();
-      }else {
-
+      } else {
       }
     });
   }
 
-  compareSimon(): Observable<any>{
+  compareSimon(): Observable<any> {
     for (let i = 0; i < this.player.length; i++) {
-      if(this.player[i] !== this.simon[i]) {
+      if (this.player[i] !== this.simon[i]) {
         this.player = [];
         console.log('wrong');
         setTimeout(() => {
           this.showErrorText = true;
-        this.setState();
-        return of (false);
+          this.setState();
+          return of(false);
         }, 100);
-      }
-      else {
+      } else {
         console.log('correct');
       }
     }
     return of(true);
   }
 
-  showWinner(){
+  showWinner() {
     this.showWinnerText = true;
     this.setState();
   }
 
-  checkComplete(){
-    console.log(this.player.length,this.simon.length,this.player.length === this.simon.length)
+  checkComplete() {
+    console.log(
+      this.player.length,
+      this.simon.length,
+      this.player.length === this.simon.length
+    );
     if (this.player.length === this.simon.length) {
-      console.log('update')
+      console.log('update');
       // I don't want to update asap and show message
       this.showWinner();
       // this.updateGame();
-    }else {
+    } else {
       // setTimeout(() => {
       //   this.index = 0;
       //   this.setRing(true);
@@ -151,16 +174,32 @@ export class GameStateService {
     }
   }
 
-  public loopIndex=0;
+  public loopIndex = 0;
+  public sound = true;
+
+  changeState(level, showWinnerText, showErrorText, sound) {
+    console.log('set level ', level);
+    this.count = level;
+    this.showErrorText = showErrorText;
+    this.showWinnerText = showWinnerText;
+    this.simon = [];
+    this.player = [];
+    this.sound = sound;
+    for (let i = 0; i < this.count; i++) {
+      this.appendSimon(); //get random color and push into simon array
+    }
+    this.setState();
+  }
 
   loop() {
     this.finishedLoop = false;
+    this.setState();
     if (this.loopIndex < this.simon.length) {
       console.log('loop');
       this.clearAll();
       setTimeout(() => {
-        var id = '#'+this.simon[this.loopIndex];
-        console.log(id+' is added');
+        var id = '#' + this.simon[this.loopIndex];
+        console.log(id + ' is added');
         var button = document.querySelectorAll(id)[0];
         button.classList.add('active');
         this.playeSound(COLORS[this.simon[this.loopIndex]]);
@@ -170,7 +209,7 @@ export class GameStateService {
           this.loop();
         }, 1000);
       }, 500);
-    }else {
+    } else {
       this.clearAll();
       this.loopIndex = 0;
       this.finishedLoop = true;
@@ -178,18 +217,18 @@ export class GameStateService {
     }
   }
 
-  clearAll(){
-    for (let i=0; i<4; i++){
-      var id = '#'+COLORS[i];
-        var button = document.querySelectorAll(id)[0];
-        button.classList.remove('active');
+  clearAll() {
+    for (let i = 0; i < 4; i++) {
+      var id = '#' + COLORS[i];
+      var button = document.querySelectorAll(id)[0];
+      button.classList.remove('active');
     }
   }
 
-  clearOthers(color:string) {
-    for (let i=0;i<4; i++) {
-      if(color !== COLORS[i]) {
-        var id = '#'+COLORS[i];
+  clearOthers(color: string) {
+    for (let i = 0; i < 4; i++) {
+      if (color !== COLORS[i]) {
+        var id = '#' + COLORS[i];
         var button = document.querySelectorAll(id)[0];
         button.classList.remove('active');
       }
@@ -199,12 +238,12 @@ export class GameStateService {
   updateGame() {
     this.showWinnerText = false;
     console.log('updateGame');
-      this.appendSimon(true);
-      this.loop();
-      this.player = [];
+    this.appendSimon(true);
+    this.loop();
+    this.player = [];
   }
 
-  tryAgain(){
+  tryAgain() {
     this.showErrorText = false;
     this.setState();
     this.loopIndex = 0;

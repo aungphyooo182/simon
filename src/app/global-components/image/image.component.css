@@ -1,5 +1,8 @@
-.eye{
+.eye {
   right: 35px;
   top: 17px;
   position: absolute;
+}
+.hamburger {
+  margin-top: 5px;
 }

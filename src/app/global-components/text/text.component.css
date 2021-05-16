@@ -15,6 +15,56 @@
   font-feature-settings: "tnum" on, "lnum" on;
   color: black;
 }
+.setting-header {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+  font-feature-settings: "tnum" on, "lnum" on;
+  /* color: black; */
+  color: #7d6f4b;
+}
+.setting-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+.howtoplay {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: green;
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.howtoplay-header {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: green;
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.how-text {
+  color: black;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: normal;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
 
 .win-text {
   color: black;
@@ -37,4 +87,49 @@
   color: black;
   line-height: 24px;
   font-weight: bold;
+}
+
+.win-text-header {
+  color: black;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.leaderboard-big-top1 {
+  color: black;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.leaderboard-small-top1 {
+  color: black;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  justify-content: flex-start;
+  word-break: break-all;
+}
+
+.leaderboard-big-other {
+  color: black;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.leaderboard-small-other {
+  color: black;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  justify-content: flex-start;
 }

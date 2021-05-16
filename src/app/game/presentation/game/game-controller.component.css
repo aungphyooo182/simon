@@ -1,8 +1,8 @@
-.show{
+.show {
   opacity: 1;
 }
 
-.hide{
+.hide {
   opacity: 0;
 }
 
@@ -14,17 +14,15 @@
   position: absolute;
 }
 
-
-.wrapper{
+.wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
-
 /* new */
-.button-wrapper{
+.button-wrapper {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -32,45 +30,43 @@
   margin-top: 20px;
 }
 
-
-
-.player-clicked{
+.player-clicked {
   color: black;
   font-size: 32px;
   line-height: 24px;
   font-weight: bold;
 }
 
-
-
-
-.header{
+.header {
   position: relative;
   height: 112px;
 }
 
-.welcome-text, .profile-wrapper{
+.welcome-text,
+.profile-wrapper {
   position: absolute;
   display: flex;
   width: 100%;
 }
 
-.welcome-text{
-  justify-content: center;
+.welcome-text {
+  align-items: center;
   margin: 24px 0px;
+  flex-direction: column;
+  z-index: 200;
 }
 
-.profile-wrapper{
+.profile-wrapper {
   justify-content: flex-end;
 }
 
-.profile{
+.profile {
   width: 64px;
   height: 64px;
-  border: 1px solid #F2F3F5;
+  border: 1px solid #f2f3f5;
   box-sizing: border-box;
   border-radius: 50%;
-  background: #FFFFFF;
+  background: #ffffff;
   float: right;
   display: flex;
   justify-content: center;
@@ -79,26 +75,61 @@
   margin: 24px;
 }
 
-.profile-box{
+.profile-box {
   width: 120px;
   height: 48px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 10px;
   position: absolute;
   margin: 88px 0px 0px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
-@media screen and (max-width:420px) {
-  .player-clicked{
+.mobile-header {
+  display: none;
+  width: 100%;
+  /* background: #ffffff; */
+  /* background: #92e5e6;
+
+  box-shadow: 0px 1px 0px #e3e4e6; */
+}
+.mobile-profile-bar {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  height: 48px;
+  background: #92e5e6;
+  border-radius: 15px;
+  margin: 10px 10px 0px 10px;
+}
+
+.mobile-profile-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 16px;
+  background: #b4cdec;
+  border-radius: 15px;
+  margin: 0px 10px;
+}
+
+@media screen and (max-width: 420px) {
+  .player-clicked {
     font-size: 16px;
     line-height: 18px;
     font-weight: bold;
   }
-  .profile, .welcome-text{
+  .profile,
+  .welcome-text {
     margin: 12px;
+  }
+  .header {
+    display: none;
+  }
+  .mobile-header {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -1,0 +1,152 @@
+.header {
+  position: relative;
+  height: 112px;
+}
+.welcome-text,
+.profile-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.welcome-text {
+  align-items: center;
+  margin: 24px 0px;
+  flex-direction: column;
+  z-index: 200;
+  position: absolute;
+}
+
+.profile {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #f2f3f5;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: #ffffff;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 24px;
+}
+
+.profile-box {
+  width: 120px;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  margin: 88px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-header {
+  /* display: none; */
+  display: flex;
+  width: 100%;
+  height: 56px;
+  justify-content: space-between;
+  align-items: center;
+}
+.mobile-profile-bar {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  height: 48px;
+  background: #92e5e6;
+  border-radius: 15px;
+  margin: 10px 10px 0px 10px;
+}
+
+.mobile-profile-box {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  padding: 16px;
+  /* background: #b4cdec; */
+  /* background: #dfdfdf; */
+  /* background: #ff8c9d; */
+  background: #ffffff;
+  margin-bottom: 16px;
+  border-radius: 12px;
+
+  /* border-radius: 15px;
+  margin: 0px 10px; */
+}
+
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  background: #f1ede2;
+  /* background: #d2717f; */
+}
+
+.profile-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  background: #ffdb26;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.icon {
+  margin-left: 12px;
+}
+.menu {
+  margin-right: 12px;
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-btn {
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px 12px;
+  flex-wrap: wrap;
+}
+
+.username {
+  display: flex;
+  flex-wrap: wrap;
+  word-break: break-all;
+}
+
+@media screen and (max-width: 420px) {
+  .player-clicked {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: bold;
+  }
+  .profile,
+  .welcome-text {
+    margin: 12px;
+  }
+  .mobile-header {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 420px) {
+  .menu-btn {
+    display: flex;
+    justify-content: flex-start;
+    padding: 12px 12px;
+    flex-wrap: wrap;
+  }
+}

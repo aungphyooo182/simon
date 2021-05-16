@@ -5,9 +5,22 @@
 ></app-popup>
 
 <app-popup
+  *ngIf="showHowToPlay"
+  [popup]="howToPlayPopup"
+  (btnPopupClicked)="clickedhowToPlayPopup($event)"
+></app-popup>
+
+<app-popup
   *ngIf="showErrorText"
   [popup]="wrongGuessPopup"
   (btnPopupClicked)="clickedwrongGuessPopup($event)"
+></app-popup>
+
+<app-popup
+  *ngIf="showLeaderboard"
+  [popup]="leaderboardPopup"
+  [isTop]="true"
+  (btnPopupClicked)="clickedleaderboardPopup($event)"
 ></app-popup>
 
 <div
@@ -15,31 +28,28 @@
   *ngIf="!finishedLoop && supportOrientation && !showWinnerText && startGame"
 ></div>
 
-<div class="header">
-  <div class="welcome-text">
-    <app-text [class]="'player-clicked'" *ngIf="username"
-      >Welcome {{ username }}</app-text
-    >
-  </div>
-  <div class="profile-wrapper">
-    <div class="profile" (click)="showProfile()">
-      <app-text [class]="'profile'">{{ username.slice(0, 3) }}</app-text>
-    </div>
-    <div class="profile-box" *ngIf="showProfileBox">
-      <app-text [class]="'profile'" (click)="logout()">Log out</app-text>
-    </div>
-  </div>
-</div>
+<app-header
+  [username]="userInfo?.username"
+  [showProfileBox]="showProfileBox"
+  [saveLoading]="saveLoading"
+  [leaderLoading]="leaderLoading"
+  [sound]="sound"
+  [item]="headerItem"
+  [index]="headerIndex"
+  (outputLeaderboard)="leaderboard()"
+  (outputSave)="saveGame()"
+  (outputHowToPlay)="howToPlay()"
+  (outputProfileBox)="showProfile()"
+  (outputSound)="soundChange($event)"
+></app-header>
 
 <div class="wrapper">
   <div class="container error-container" *ngIf="!supportOrientation">
-    <app-text [class]="'body-text'"
-      >Please change screen to portrait mode</app-text
-    >
+    <app-text [class]="'body-text'">{{ unsupportText }}</app-text>
   </div>
 
   <div class="container" *ngIf="supportOrientation">
-    <div class="flex center" style="height: 64px">
+    <div class="flex center" style="height: 100px; flex-direction: column">
       <app-text
         *ngIf="startGame"
         [class]="'player-clicked'"
@@ -47,11 +57,14 @@
           show: startGame && finishedLoop,
           hide: startGame && !finishedLoop
         }"
-        >You have to guess {{ simonArray.length }} times.</app-text
+        >You have to guess {{ level }} times.</app-text
+      >
+      <app-text [class]="'howtoplay'" (click)="howToPlay()"
+        >How to play?</app-text
       >
       <app-button
         *ngIf="!startGame"
-        [class]="'continue-btn'"
+        [class]="'popup-btn1'"
         (click)="startGameClicked()"
         >Start Game</app-button
       >
@@ -62,11 +75,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="leaderboard-wrapper">
-  <app-leader-board></app-leader-board>
-</div> -->
-
-<!-- <div class="button-wrapper">
-  
-</div> -->

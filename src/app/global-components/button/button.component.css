@@ -4,6 +4,11 @@ button {
   -webkit-tap-highlight-color: transparent; /* prevent blur when click in mobile screen */
 }
 
+.btn-disable {
+  cursor: not-allowed !important;
+  background: #d9d9d9 !important;
+}
+
 .my-works {
   width: 200px;
   height: 200px;
@@ -59,47 +64,48 @@ button {
   box-shadow: 0px 4px 0px #cebe19;
 }
 
-.simon-bg-red{
+.simon-bg-red {
   background: #e63c39;
 }
-.simon-bg-yellow{
-  background: #ffbf00
+.simon-bg-yellow {
+  background: #ffbf00;
 }
-.simon-bg-green{
+.simon-bg-green {
   background: #00a653;
 }
-.simon-bg-blue{
+.simon-bg-blue {
   background: #0065f2;
 }
 
-.simon-bg-red:active, .simon-bg-red.active{
+.simon-bg-red:active,
+.simon-bg-red.active {
   background: #8c1e1c;
 }
-.simon-bg-yellow:active, .simon-bg-yellow.active{
+.simon-bg-yellow:active,
+.simon-bg-yellow.active {
   background: #805500;
 }
-.simon-bg-green:active, .simon-bg-green.active{
+.simon-bg-green:active,
+.simon-bg-green.active {
   background: #00593c;
 }
-.simon-bg-blue:active, .simon-bg-blue.active{
-  background: #0043a1;;
+.simon-bg-blue:active,
+.simon-bg-blue.active {
+  background: #0043a1;
 }
 
-
-
-.simon-top-left{
+.simon-top-left {
   border-top-left-radius: 100%;
 }
-.simon-top-right{
+.simon-top-right {
   border-top-right-radius: 100%;
 }
-.simon-bottom-left{
+.simon-bottom-left {
   border-bottom-left-radius: 100%;
 }
-.simon-bottom-right{
+.simon-bottom-right {
   border-bottom-right-radius: 100%;
 }
-
 
 .continue-btn {
   width: 120px;
@@ -113,50 +119,175 @@ button {
   cursor: pointer;
 }
 
-
-@media screen and (max-width:420px) {
-  .simon-bg-red,
-  .simon-bg-yellow,
- .simon-bg-green,
- .simon-bg-blue,
-   .simon-btn
-   {
-     width:90px;
-     height: 90px;
-   }
- 
-   .simon-bg-red:active, .simon-bg-red.active, 
-   .simon-bg-yellow:active, .simon-bg-yellow.active, 
-   .simon-bg-green:active, .simon-bg-green.active, 
-   .simon-bg-blue:active, .simon-bg-blue.active
-   {
-     width:95px;
-     height: 95px;
-   }
- 
-
+.popup-btn1 {
+  width: 130px;
+  height: 48px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #92e5e6;
+  box-shadow: 0px 4px 0px #5dbcbd;
 }
 
+.popup-btn1:hover {
+  background: #b7f9fa;
+  box-shadow: 0px 4px 0px #7acbcc;
+}
 
+.popup-btn1:active,
+.popup-btn1:focus {
+  background: #5bcacc;
+  box-shadow: 0px 4px 0px #459a9c;
+}
 
-@media screen and (min-width:420px) {
-.simon-bg-red,
- .simon-bg-yellow,
-.simon-bg-green,
-.simon-bg-blue,
-  .simon-btn
-  {
-    width:310px;
+.popup-btn2 {
+  width: 130px;
+  height: 48px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #ff8c9d;
+  box-shadow: 0px 4px 0px #e36477;
+}
+
+.popup-btn2:hover {
+  background: #ffa3b1;
+  box-shadow: 0px 4px 0px #de7182;
+}
+
+.popup-btn2:active,
+.popup-btn2:focus {
+  background: #db6375;
+  box-shadow: 0px 4px 0px #a34a57;
+}
+
+.popup-btn3 {
+  width: 130px;
+  height: 48px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #a7d848;
+  box-shadow: 0px 4px 0px #80a637;
+}
+
+.popup-btn3:hover {
+  background: #c8f76d;
+  box-shadow: 0px 4px 0px #9bbf55;
+}
+
+.popup-btn3:active,
+.popup-btn3:focus {
+  background: #83b02c;
+  box-shadow: 0px 4px 0px #638521;
+}
+
+.popup-btn4 {
+  width: 130px;
+  height: 48px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #b4cdec;
+  box-shadow: 0px 4px 0px #889bb3;
+}
+
+.popup-btn4:hover {
+  background: #d1e6ff;
+  box-shadow: 0px 4px 0px #9dbde3;
+}
+
+.popup-btn4:active,
+.popup-btn4:focus {
+  background: #8cb0db;
+  box-shadow: 0px 4px 0px #5b88bd;
+}
+
+.popup-btn5 {
+  width: 130px;
+  height: 48px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #efdb15;
+  box-shadow: 0px 4px 0px #cfbd12;
+}
+
+.popup-btn5:hover {
+  background: #ffee47;
+  box-shadow: 0px 4px 0px #decc24;
+}
+
+.popup-btn5:active,
+.popup-btn5:focus {
+  background: #d6c200;
+  box-shadow: 0px 4px 0px #ab9a00;
+}
+
+.header-btn-margin {
+  margin: 6px;
+}
+
+@media screen and (max-width: 420px) {
+  .simon-bg-red,
+  .simon-bg-yellow,
+  .simon-bg-green,
+  .simon-bg-blue,
+  .simon-btn {
+    width: 90px;
+    height: 90px;
+  }
+
+  .simon-bg-red:active,
+  .simon-bg-red.active,
+  .simon-bg-yellow:active,
+  .simon-bg-yellow.active,
+  .simon-bg-green:active,
+  .simon-bg-green.active,
+  .simon-bg-blue:active,
+  .simon-bg-blue.active {
+    width: 95px;
+    height: 95px;
+  }
+}
+
+@media screen and (min-width: 420px) {
+  .simon-bg-red,
+  .simon-bg-yellow,
+  .simon-bg-green,
+  .simon-bg-blue,
+  .simon-btn {
+    width: 310px;
     height: 310px;
   }
 
-  .simon-bg-red:active, .simon-bg-red.active, 
-  .simon-bg-yellow:active, .simon-bg-yellow.active, 
-  .simon-bg-green:active, .simon-bg-green.active, 
-  .simon-bg-blue:active, .simon-bg-blue.active
-  {
-    width:320px;
+  .simon-bg-red:active,
+  .simon-bg-red.active,
+  .simon-bg-yellow:active,
+  .simon-bg-yellow.active,
+  .simon-bg-green:active,
+  .simon-bg-green.active,
+  .simon-bg-blue:active,
+  .simon-bg-blue.active {
+    width: 320px;
     height: 320px;
   }
-
+  .menu-btn {
+    margin-right: 20px;
+  }
 }

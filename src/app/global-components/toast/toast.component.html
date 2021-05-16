@@ -1,0 +1,50 @@
+<div class="feedback-div cursor" *ngIf="tickIcon">
+  <div class="d-flex">
+    <img src="./assets/images/feedback_tick.svg" />
+    <span class="feedback-title">
+      {{ feedbackTitle }}
+    </span>
+  </div>
+  <div class="d-flex body-text ml-36 mb-8 mt-8 word-break" *ngIf="feedbackBody">
+    {{ feedbackBody }}
+  </div>
+  <div
+    *ngIf="feedbackBtn.status"
+    class="
+      d-flex
+      ml-36
+      feedback-btn
+      justify-content-center
+      align-item-center
+      cursor
+    "
+    (click)="dimissFeedback($event)"
+  >
+    {{ feedbackBtn.text }}
+  </div>
+</div>
+<div class="feedback-div2 cursor" *ngIf="!tickIcon">
+  <div class="d-flex">
+    <img src="./assets/images/alert-icon.svg" />
+    <span class="feedback-title2">
+      {{ feedbackTitle }}
+    </span>
+  </div>
+  <div class="d-flex body-text ml-36 mb-8 mt-8 word-break" *ngIf="feedbackBody">
+    {{ feedbackBody }}
+  </div>
+  <div
+    *ngIf="feedbackBtn.status"
+    class="
+      d-flex
+      ml-36
+      feedback-btn
+      justify-content-center
+      align-item-center
+      cursor
+    "
+    (click)="dimissFeedback($event)"
+  >
+    {{ feedbackBtn.text }}
+  </div>
+</div>
