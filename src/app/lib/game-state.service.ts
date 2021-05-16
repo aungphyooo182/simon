@@ -53,11 +53,11 @@ export class GameStateService {
   }
 
   playWinAudio() {
-    this.winAudio.play();
+    if (this.sound) this.winAudio.play();
   }
 
   playLoseAudio() {
-    this.loseAudio.play();
+    if (this.sound) this.loseAudio.play();
   }
 
   private get randomColor(): string {
@@ -91,11 +91,12 @@ export class GameStateService {
       player: this.player,
       simon: this.simon,
       count: this.count,
+      sound: this.sound,
       finishedLoop: this.finishedLoop,
       showWinnerText: this.showWinnerText,
       showErrorText: this.showErrorText,
     });
-    console.log('set state');
+    console.log('set state', this.state);
   }
 
   restartSimon(): void {
@@ -109,7 +110,7 @@ export class GameStateService {
 
   playeSound(val: number) {
     console.log(val);
-    this.soundEffects[val].play();
+    if (this.sound) this.soundEffects[val].play();
     // this.soundEffects[val].pause;
     // this.soundEffects[val].currentTime = 0;
     setTimeout(() => {
@@ -174,14 +175,16 @@ export class GameStateService {
   }
 
   public loopIndex = 0;
+  public sound = true;
 
-  changeState(level, showWinnerText, showErrorText) {
+  changeState(level, showWinnerText, showErrorText, sound) {
     console.log('set level ', level);
     this.count = level;
     this.showErrorText = showErrorText;
     this.showWinnerText = showWinnerText;
     this.simon = [];
     this.player = [];
+    this.sound = sound;
     for (let i = 0; i < this.count; i++) {
       this.appendSimon(); //get random color and push into simon array
     }

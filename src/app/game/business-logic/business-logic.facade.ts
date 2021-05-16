@@ -5,6 +5,8 @@ import { DataFacade } from '../data/data.facade';
 import { SaveGameUseCase } from './use-cases/save-game.use-case';
 import { GetCurrentLevelUseCase } from './use-cases/get-current-level.use-case';
 import { GetLeaderboardUseCase } from './use-cases/get-leaderboard.use-case';
+import { GetUserDetailsUseCase } from './use-cases/get-user-details.use-case';
+import { GetAllRankUseCase } from './use-cases/get-all-rank.use-case';
 
 @NgModule({
   imports: [DataFacade],
@@ -20,7 +22,9 @@ export class BusinessLogicFacade implements BusinessLogicRequirements {
   constructor(
     private saveGameUseCase: SaveGameUseCase,
     private getCurrentLevelUseCase: GetCurrentLevelUseCase,
-    private getLeaderboardUseCase: GetLeaderboardUseCase
+    private getLeaderboardUseCase: GetLeaderboardUseCase,
+    private getUserDetailsUseCase: GetUserDetailsUseCase,
+    private getAllRankUseCase: GetAllRankUseCase
   ) {}
 
   saveGame(id, body) {
@@ -31,5 +35,11 @@ export class BusinessLogicFacade implements BusinessLogicRequirements {
   }
   getLeaderboard() {
     return this.getLeaderboardUseCase.run();
+  }
+  getUserDetails(id) {
+    return this.getUserDetailsUseCase.run(id);
+  }
+  getAllRank() {
+    return this.getAllRankUseCase.run();
   }
 }

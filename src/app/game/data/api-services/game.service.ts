@@ -41,4 +41,24 @@ export class GameService {
       })
     );
   }
+  getUserDetails(id) {
+    let url = this.baseUrl + '/api/user/' + id;
+    return this.http.get(url).pipe(
+      map((res: Response) => {
+        let result = res;
+        // console.log(res);
+        return result;
+      })
+    );
+  }
+  getAllRank() {
+    let url = this.baseUrl + '/api/user/leaderboard/all';
+    return this.http.get(url).pipe(
+      map((res: Response) => {
+        let result = res;
+        // console.log(res);
+        return result;
+      })
+    );
+  }
 }

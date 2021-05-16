@@ -1,5 +1,6 @@
 import { Inject, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ShareService } from 'src/app/lib/share.service';
 import {
   BusinessLogicRequirements,
   BusinessRequirementsInjectionToken,
@@ -16,7 +17,8 @@ export class HomePageControllerComponent {
     @Inject(BusinessRequirementsInjectionToken)
     private business: BusinessLogicRequirements,
     private store: HomePageStore,
-    private router: Router
+    private router: Router,
+    private shareService: ShareService
   ) {}
 
   public btnLoading = false;
@@ -60,8 +62,9 @@ export class HomePageControllerComponent {
     this.business.login(data).subscribe(
       (data) => {
         console.log(data, 'hello');
-        localStorage.setItem('userInfo', JSON.stringify(data));
-        localStorage.setItem('username', data.username);
+        // localStorage.setItem('userInfo', JSON.stringify(data));
+        // localStorage.setItem('username', data.username);
+        this.shareService.setUserId(data._id);
         this.btnLoading = false;
         this.router.navigateByUrl('/simon-game');
       },

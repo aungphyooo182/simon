@@ -10,4 +10,10 @@ export class LeaderboardItemComponent {
   constructor(private store: LeaderboardItemStore) {}
 
   @Input() item;
+  @Input() index;
+  @Input() currentRank = false;
+
+  ngOnInit() {
+    console.log('index is ', this.index);
+  }
 }

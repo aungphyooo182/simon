@@ -6,6 +6,7 @@ import {
 import { GameStore } from './game.store';
 import { environment } from 'src/environments/environment';
 import { GameStateService } from 'src/app/lib/game-state.service';
+import { ShareService } from 'src/app/lib/share.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 @Component({
@@ -19,7 +20,8 @@ export class GameControllerComponent {
     private business: BusinessLogicRequirements,
     private store: GameStore,
     private game: GameStateService,
-    private router: Router
+    private router: Router,
+    private shareService: ShareService
   ) {}
 
   count: number;
@@ -36,6 +38,15 @@ export class GameControllerComponent {
   public userInfo;
   public userId;
   public sound;
+  public headerItem = [
+    {
+      value1: '0',
+      value2: 'username',
+      value3: 2,
+      class: 'howto-text',
+    },
+  ];
+  public headerIndex = 0;
 
   public username = localStorage.getItem('username')
     ? localStorage.getItem('username')
@@ -187,23 +198,13 @@ export class GameControllerComponent {
   }
 
   ngOnInit(): void {
-    this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    this.userId = this.userInfo['_id'];
-    this.sound = this.userInfo['sound'];
-    console.log(this.userInfo, this.sound);
-    console.log(this.userInfo.level);
-    this.game.changeState(this.userInfo['level'], false, false);
-  }
-
-  startGameClicked() {
-    console.log('start game');
-    this.startGame = true;
     this.game.state.subscribe((state) => {
-      console.log(state);
+      console.log('haha', state);
       this.state = state;
       this.count = state.count; //for show
       this.simonArray = state.simon;
       this.level = this.simonArray.length;
+      this.sound = state.sound;
       (this.winnerPopup.text[1].value = 'Level ' + this.level + ' completed.'),
         (this.finishedLoop = state.finishedLoop);
       this.showWinnerText = state.showWinnerText;
@@ -218,6 +219,37 @@ export class GameControllerComponent {
           this.game.playWinAudio();
         }, 300);
     });
+    this.userId = this.shareService.getUserId();
+    if (this.userId) this.getUserDetail(this.userId);
+    else {
+      this.router.navigate(['']);
+      this.shareService.setUserId(null);
+    }
+    this.getCurrentUserRank();
+  }
+
+  getUserDetail(id) {
+    this.business.getUserDetails(id).subscribe(
+      (data) => {
+        console.log(data);
+        this.userInfo = data;
+        console.log(this.userInfo['sound'], ' in getUserDetail');
+        this.game.changeState(
+          this.userInfo['level'],
+          false,
+          false,
+          this.userInfo['sound']
+        );
+      },
+      (err) => {
+        console.log('err');
+      }
+    );
+  }
+
+  startGameClicked() {
+    console.log('start game');
+    this.startGame = true;
     this.updateOrientatioState();
   }
 
@@ -241,26 +273,14 @@ export class GameControllerComponent {
 
   showProfile() {
     this.showProfileBox = !this.showProfileBox;
+    console.log(this.headerItem);
   }
 
   logout() {
     localStorage.clear();
     this.router.navigate(['']);
+    this.shareService.setUserId(null);
   }
-
-  // getCurrentLevel() {
-  //   this.business.getCurrentLevel(this.userId).subscribe(
-  //     (data) => {
-  //       console.log(data);
-  //       if (data.lenght > 0) this.game.setLevel(data.level);
-  //       else this.game.setLevel(2);
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //       this.game.setLevel(2);
-  //     }
-  //   );
-  // }
 
   soundChange(val: boolean) {
     console.log('I am sound on ', val);
@@ -285,6 +305,7 @@ export class GameControllerComponent {
     console.log(this.userInfo, this.userId);
     var body = {
       level: this.level,
+      sound: this.sound,
     };
     if (this.level > 2 && this.userId != 'undefined') {
       this.showProfileBox = false;
@@ -292,6 +313,7 @@ export class GameControllerComponent {
         (data) => {
           console.log(data);
           this.saveLoading = false;
+          this.getCurrentUserRank();
         },
         (error) => {
           console.log(error);
@@ -308,7 +330,7 @@ export class GameControllerComponent {
     if (index == 0) this.game.updateGame();
     else if (index == 1) this.playerGuess('white');
     else {
-      this.game.changeState(this.level + 1, false, false);
+      this.game.changeState(this.level + 1, false, false, this.sound);
       this.startGame = false;
       this.previousSupportOrientation = false;
     }
@@ -331,6 +353,28 @@ export class GameControllerComponent {
     this.showProfileBox = false;
     this.getLeaderboard();
   }
+  getCurrentUserRank() {
+    this.business.getAllRank().subscribe(
+      (data) => {
+        console.log('rank from api ', data);
+        var index = 0;
+        for (var i = 0; i < data.length; i++) {
+          if (data[i]._id == this.userId) index = i;
+        }
+        this.headerItem = [];
+        this.headerItem.push({
+          value1: index.toString(),
+          value2: data[index].username,
+          value3: data[index].level ? data[index].level : 2,
+          class: 'howto-text',
+        });
+        console.log('rank ', this.headerItem);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
   getLeaderboard() {
     this.leaderLoading = true;
     this.showLeaderboard = true;
@@ -339,12 +383,6 @@ export class GameControllerComponent {
         console.log('data ', data);
         this.leaderLoading = false;
         this.leaderboardPopup.text = [];
-        this.leaderboardPopup.text.push({
-          value1: 'No',
-          value2: 'Username',
-          value3: 'Level',
-          class: 'howto-text',
-        });
         for (var i = 0; i < data.length; i++) {
           this.leaderboardPopup.text.push({
             value1: (i + 1).toString(),
@@ -353,8 +391,6 @@ export class GameControllerComponent {
             class: 'howto-text',
           });
         }
-        console.log(this.leaderboardPopup);
-
         this.showLeaderboard = true;
       },
       (err) => {

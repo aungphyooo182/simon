@@ -69,18 +69,7 @@
   margin-top: 8px;
 }
 
-/* @media only screen and (max-width: 600px) and (min-width: 376px) {
-  .feedback-div,
-  .feedback-div2 {
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 90%;
-    max-width: 400px;
-  }
-} */
-
-@media (max-width: 375px) {
+@media (max-width: 420px) {
   .feedback-div,
   .feedback-div2 {
     left: 0;

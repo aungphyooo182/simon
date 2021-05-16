@@ -5,6 +5,8 @@ export interface DataRequirements {
   saveGame(id, body): Observable<any>;
   getCurrentLevel(id): Observable<any>;
   getLeaderboard(): Observable<any>;
+  getAllRank(): Observable<any>;
+  getUserDetails(id): Observable<any>;
 }
 
 export const DataRequirementsInjectionToken =

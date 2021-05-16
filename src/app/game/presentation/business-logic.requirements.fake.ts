@@ -13,4 +13,10 @@ export class BusinessLogicRequirementsFake
   getLeaderboard(): Observable<any> {
     return of(true);
   }
+  getAllRank(): Observable<any> {
+    return of(true);
+  }
+  getUserDetails(id): Observable<any> {
+    return of(true);
+  }
 }

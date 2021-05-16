@@ -1,14 +1,17 @@
 <div class="card-container" [ngClass]="{ 'top-class': isTop }">
-  <div class="card">
+  <div class="card" *ngIf="popup.text.length > 0">
     <div class="close" (click)="close()">
       <app-image [src]="'./assets/images/cancel_m.svg'"></app-image>
     </div>
-    <ng-container *ngFor="let item of popup.text">
+    <ng-container *ngFor="let item of popup.text; let index = index">
       <ng-container *ngIf="!isTop">
         <app-text [class]="item.class">{{ item.value }}</app-text>
       </ng-container>
       <ng-container *ngIf="isTop">
-        <app-leaderboard-item [item]="item"></app-leaderboard-item>
+        <app-leaderboard-item
+          [item]="item"
+          [index]="index"
+        ></app-leaderboard-item>
       </ng-container>
     </ng-container>
     <div class="footer-btn">
@@ -17,6 +20,11 @@
           item.text
         }}</app-button>
       </ng-container>
+    </div>
+  </div>
+  <div class="card" *ngIf="popup.text.length == 0">
+    <div class="flex-center">
+      <app-text>Loading . . . </app-text>
     </div>
   </div>
 </div>

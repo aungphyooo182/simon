@@ -29,11 +29,13 @@
 ></div>
 
 <app-header
-  [username]="username"
+  [username]="userInfo?.username"
   [showProfileBox]="showProfileBox"
   [saveLoading]="saveLoading"
   [leaderLoading]="leaderLoading"
   [sound]="sound"
+  [item]="headerItem"
+  [index]="headerIndex"
   (outputLeaderboard)="leaderboard()"
   (outputSave)="saveGame()"
   (outputHowToPlay)="howToPlay()"

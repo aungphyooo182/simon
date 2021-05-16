@@ -22,6 +22,17 @@
       <app-text [class]="'profile'">Welcome {{ username }}</app-text>
     </div>
   </div>
+  <div>
+    <app-text [class]="'leaderboard-big-top1'">Current Rank</app-text>
+  </div>
+  <div class="current-level">
+    <app-leaderboard-item
+      *ngIf="item.length > 0"
+      [item]="item[0]"
+      [index]="index"
+      [currentRank]="true"
+    ></app-leaderboard-item>
+  </div>
   <div class="line"></div>
   <div class="menu-btn">
     <app-button

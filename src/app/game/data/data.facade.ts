@@ -18,4 +18,10 @@ export class DataFacade implements DataRequirements {
   getLeaderboard() {
     return this.gameServiceApi.getLeaderboard();
   }
+  getUserDetails(id) {
+    return this.gameServiceApi.getUserDetails(id);
+  }
+  getAllRank() {
+    return this.gameServiceApi.getAllRank();
+  }
 }
