@@ -353,11 +353,11 @@ export class GameControllerComponent {
   clickedwrongGuessPopup(index) {
     if (index == 0) this.game.tryAgain();
     else if (index == 1) this.playerGuess('white');
-    // else {
-    //   this.game.changeState(this.level + 1, false, false, this.sound);
-    //   this.startGame = false;
-    //   this.previousSupportOrientation = false;
-    // }
+    else {
+      this.game.changeState(this.level + 1, false, false, this.sound);
+      this.startGame = false;
+      this.previousSupportOrientation = false;
+    }
   }
 
   howToPlay() {
