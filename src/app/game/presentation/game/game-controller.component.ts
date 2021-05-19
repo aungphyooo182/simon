@@ -384,7 +384,7 @@ export class GameControllerComponent {
         this.headerItem.push({
           value1: index.toString(),
           value2: data[index].username,
-          value3: data[index].level ? data[index].level : 2,
+          value3: data[index].level ? data[index].level : 1,
           class: 'howto-text',
         });
         console.log('rank ', this.headerItem);
@@ -406,7 +406,7 @@ export class GameControllerComponent {
           this.leaderboardPopup.text.push({
             value1: (i + 1).toString(),
             value2: data[i].username,
-            value3: data[i].level ? data[i].level : 2,
+            value3: data[i].level ? data[i].level : 1,
             class: 'howto-text',
           });
         }
