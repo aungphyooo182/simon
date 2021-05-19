@@ -1,8 +1,8 @@
-export const START_COUNT = 2;
+export const START_COUNT = 1;
 
-export enum COLORS{
+export enum COLORS {
   red,
   green,
   blue,
-  yellow
+  yellow,
 }
