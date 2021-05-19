@@ -35,6 +35,7 @@ export class GameControllerComponent {
   showDebug = environment.showDebug;
   previousSupportOrientation: boolean = false;
 
+  public bestLevel;
   public userInfo;
   public userId;
   public sound;
@@ -169,8 +170,13 @@ export class GameControllerComponent {
     console.log('ori', window.innerWidth);
     if (window.innerHeight > window.innerWidth && window.innerWidth <= 1024) {
       this.supportOrientation = true;
+      console.log(
+        this.previousSupportOrientation,
+        this.supportOrientation,
+        this.startGame
+      );
       if (
-        !this.previousSupportOrientation &&
+        // !this.previousSupportOrientation &&
         this.supportOrientation &&
         this.startGame
       ) {
@@ -198,6 +204,12 @@ export class GameControllerComponent {
   }
 
   ngOnInit(): void {
+    console.log(
+      !this.finishedLoop,
+      this.supportOrientation,
+      !this.showWinnerText,
+      this.startGame
+    );
     this.game.state.subscribe((state) => {
       console.log('haha', state);
       this.state = state;
@@ -233,13 +245,9 @@ export class GameControllerComponent {
       (data) => {
         console.log(data);
         this.userInfo = data;
+        this.bestLevel = data.level;
         console.log(this.userInfo['sound'], ' in getUserDetail');
-        this.game.changeState(
-          this.userInfo['level'],
-          false,
-          false,
-          this.userInfo['sound']
-        );
+        this.game.changeState(1, false, false, this.userInfo['sound']);
       },
       (err) => {
         console.log('err');
@@ -254,11 +262,13 @@ export class GameControllerComponent {
   }
 
   playerGuess(e: string) {
-    console.log(e, 'player guess');
-    if (e !== 'white' && this.finishedLoop) {
-      this.game.playerGuess(e);
-    } else {
-      this.game.restartSimon();
+    console.log(e, 'player guess', this.startGame);
+    if (this.startGame) {
+      if (e !== 'white' && this.finishedLoop) {
+        this.game.playerGuess(e);
+      } else {
+        this.game.restartSimon();
+      }
     }
   }
 
@@ -307,7 +317,11 @@ export class GameControllerComponent {
       level: this.level,
       sound: this.sound,
     };
-    if (this.level > 2 && this.userId != 'undefined') {
+    if (
+      this.level > 1 &&
+      this.userId != 'undefined' &&
+      this.level > this.bestLevel
+    ) {
       this.showProfileBox = false;
       this.business.saveGame(this.userId, body).subscribe(
         (data) => {
@@ -338,7 +352,12 @@ export class GameControllerComponent {
 
   clickedwrongGuessPopup(index) {
     if (index == 0) this.game.tryAgain();
-    else this.playerGuess('white');
+    else if (index == 1) this.playerGuess('white');
+    // else {
+    //   this.game.changeState(this.level + 1, false, false, this.sound);
+    //   this.startGame = false;
+    //   this.previousSupportOrientation = false;
+    // }
   }
 
   howToPlay() {
